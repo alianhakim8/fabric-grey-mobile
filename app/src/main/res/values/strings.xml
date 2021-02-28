@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">fabric-mobile-mvvm</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Sign In</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="desc_sign_in">Please Sign In To Continue</string>
+    <string name="username">Username</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="desc_sign_up">Please Sign Up To Continue</string>
+</resources>
