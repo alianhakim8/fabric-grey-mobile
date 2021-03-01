@@ -1,9 +1,6 @@
 package id.alian.fabric_mobile_mvvm.ui.main.view.fabric
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,6 +14,7 @@ import id.alian.fabric_mobile_mvvm.ui.main.view.adapter.AllFabricAdapter
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
 import id.alian.fabric_mobile_mvvm.utils.Status
+import id.alian.fabric_mobile_mvvm.utils.connect
 
 class FabricActivity : AppCompatActivity() {
 
@@ -61,32 +59,8 @@ class FabricActivity : AppCompatActivity() {
         b.recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun connect(): Boolean {
-        val connectivityManager =
-            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                }
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                }
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
     private fun getFabrics(token: String) {
-        if (connect()) {
+        if (this.connect()) {
             viewModel.getAllFabric("Bearer $token").observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {

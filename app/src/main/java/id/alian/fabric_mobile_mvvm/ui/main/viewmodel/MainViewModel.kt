@@ -42,7 +42,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     fun addFabric(token: String, body: FabricResponse) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = mainRepository.getAllFabric(token)))
+            emit(Resource.success(data = mainRepository.addFabric(token, body)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred"))
         }
