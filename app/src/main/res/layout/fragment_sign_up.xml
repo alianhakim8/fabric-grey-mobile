@@ -25,9 +25,9 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/_16hsdp"
             android:text="@string/welcome_user"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/custom_blue"
             android:textSize="@dimen/_20font_ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +35,10 @@
 
         <TextView
             android:id="@+id/textView10"
+            android:textColor="@color/custom_navy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/_8hsdp"
             android:text="@string/desc_sign_up"
             android:textSize="@dimen/_13font_ssp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -48,15 +49,18 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/_16hsdp"
+            android:layout_marginTop="@dimen/_20hsdp"
+            android:layout_marginEnd="@dimen/_16hsdp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textSize="@dimen/_13font_ssp" />
@@ -67,15 +71,18 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/_16hsdp"
+            android:layout_marginTop="@dimen/_8hsdp"
+            android:layout_marginEnd="@dimen/_16hsdp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="@+id/etEmail"
             app:layout_constraintStart_toStartOf="@+id/etEmail"
             app:layout_constraintTop_toBottomOf="@+id/etEmail">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
                 android:hint="@string/username"
                 android:inputType="text"
                 android:textSize="@dimen/_13font_ssp" />
@@ -86,16 +93,20 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/_16hsdp"
+            android:layout_marginTop="@dimen/_8hsdp"
+            android:layout_marginEnd="@dimen/_16hsdp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etUsername">
+            app:layout_constraintTop_toBottomOf="@+id/etUsername"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textSize="@dimen/_13font_ssp" />
@@ -105,8 +116,9 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/_16hsdp"
+            android:layout_marginTop="@dimen/_10hsdp"
+            android:layout_marginEnd="@dimen/_16hsdp"
             android:enabled="false"
             android:padding="@dimen/_10hsdp"
             android:text="@string/sign_up"
@@ -134,8 +146,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".4" />
+            app:layout_constraintGuide_percent=".3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

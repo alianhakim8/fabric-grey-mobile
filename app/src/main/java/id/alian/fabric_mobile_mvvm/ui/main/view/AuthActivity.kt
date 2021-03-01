@@ -1,11 +1,13 @@
 package id.alian.fabric_mobile_mvvm.ui.main.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import id.alian.fabric_mobile_mvvm.R
 import id.alian.fabric_mobile_mvvm.databinding.ActivityAuthBinding
-import id.alian.fabric_mobile_mvvm.ui.main.view.fragment.SignInFragment
-import id.alian.fabric_mobile_mvvm.ui.main.view.fragment.SignUpFragment
+import id.alian.fabric_mobile_mvvm.ui.main.view.fragment.auth.SignInFragment
+import id.alian.fabric_mobile_mvvm.ui.main.view.fragment.auth.SignUpFragment
 
 class AuthActivity : AppCompatActivity() {
 
@@ -35,5 +37,11 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        Intent(this, OnBoardActivity::class.java).also {
+            startActivity(it)
+            finish()
+        }
+    }
 
 }

@@ -48,28 +48,27 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    def lifecycle_version = "2.2.0"
     // - - ViewModel
-    //noinspection GradleDependency
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     // - - LiveData
-    //noinspection GradleDependency
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
 
     // - - Retrofit2
-    def retrofit_version = "2.9.0"
-    def logging_version = "4.3.1"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    //noinspection GradleDependency
-    implementation "com.squareup.okhttp3:okhttp:$logging_version"
-    //noinspection GradleDependency
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
 
     // Dynamic Scalable
     implementation 'com.hardik.hsdp:scalablesize-android:1.0.1'
+
+    // Ken burns effect
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
+    // picasso - for image loading
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

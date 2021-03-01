@@ -23,6 +23,7 @@ class OnBoardActivity : AppCompatActivity() {
                 it.putExtra("status", "sign in")
                 startActivity(it)
             }
+            finish()
         }
 
         b.btnToSignUp.setOnClickListener {
@@ -30,6 +31,7 @@ class OnBoardActivity : AppCompatActivity() {
                 it.putExtra("status", "sign up")
                 startActivity(it)
             }
+            finish()
         }
     }
 }

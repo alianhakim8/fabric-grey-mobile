@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.view.DashboardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/home_menu"
+            app:title="Dashboard" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerBanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150hsdp"
+            android:layout_marginStart="@dimen/_10hsdp"
+            android:layout_marginEnd="@dimen/_10hsdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1hsdp"
+            android:layout_marginLeft="@dimen/_10hsdp"
+            android:layout_marginTop="@dimen/_50hsdp"
+            android:layout_marginRight="@dimen/_10hsdp"
+            android:background="#D6D6D6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10hsdp"
+            android:layout_marginTop="@dimen/_50hsdp"
+            android:layout_marginBottom="@dimen/_20hsdp"
+            android:text="@string/menu"
+            android:textColor="#303030"
+            android:textSize="@dimen/_20font_ssp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10hsdp"
+            android:layout_marginEnd="@dimen/_10hsdp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/fabric"
+                    android:layout_width="@dimen/_150hsdp"
+                    android:layout_height="@dimen/_150hsdp"
+                    android:layout_margin="@dimen/_5hsdp"
+                    android:backgroundTint="@color/custom_navy"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="@dimen/_10hsdp"
+                    app:cardElevation="@dimen/_5hsdp"
+                    app:rippleColor="@color/custom_blue">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_90hsdp"
+                            android:contentDescription="@string/todo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10hsdp"
+                            android:text="@string/fabric"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13font_ssp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/machine"
+                    android:layout_width="@dimen/_150hsdp"
+                    android:layout_height="@dimen/_150hsdp"
+                    android:layout_margin="@dimen/_5hsdp"
+                    android:backgroundTint="@color/custom_blue"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="@dimen/_10hsdp"
+                    app:cardElevation="@dimen/_5hsdp"
+                    app:rippleColor="@color/custom_navy">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="@dimen/_90hsdp"
+                            android:layout_height="@dimen/_90hsdp"
+                            android:contentDescription="@string/app_name" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10hsdp"
+                            android:text="@string/machine"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13font_ssp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/report"
+                    android:layout_width="@dimen/_150hsdp"
+                    android:layout_height="@dimen/_150hsdp"
+                    android:layout_margin="@dimen/_5hsdp"
+                    android:backgroundTint="@color/custom_navy"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="@dimen/_10hsdp"
+                    app:cardElevation="@dimen/_5hsdp"
+                    app:rippleColor="@color/custom_blue">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="@dimen/_90hsdp"
+                            android:layout_height="@dimen/_90hsdp"
+                            android:contentDescription="@string/app_name" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10hsdp"
+                            android:text="@string/report"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10hsdp"
+            android:layout_marginTop="@dimen/_50hsdp"
+            android:layout_marginBottom="@dimen/_20hsdp"
+            android:text="@string/latest_po_number"
+            android:textColor="#303030"
+            android:textSize="@dimen/_20font_ssp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100hsdp"
+            android:layout_margin="@dimen/_10hsdp"
+            android:background="@drawable/po_number_style">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16hsdp"
+                android:text="2020/2/121547898987"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Fabric Type : Franch Terry"
+                android:textSize="@dimen/_10font_ssp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Machine : Machine 001"
+                android:textSize="@dimen/_10font_ssp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_50hsdp"
+                android:layout_height="@dimen/_50hsdp"
+                android:layout_marginEnd="@dimen/_16hsdp"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

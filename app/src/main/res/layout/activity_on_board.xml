@@ -7,11 +7,34 @@
     android:padding="@dimen/_10hsdp"
     tools:context=".ui.main.view.OnBoardActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_apps"
+        android:textColor="@color/custom_blue"
+        android:textSize="@dimen/_20font_ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnToSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_app"
+        android:textSize="@dimen/_10font_ssp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <Button
         android:id="@+id/btnToSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:padding="@dimen/_10hsdp"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btnToSignIn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +43,16 @@
 
     <Button
         android:id="@+id/btnToSignIn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:padding="@dimen/_10hsdp"
+        android:text="@string/sign_in"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/custom_blue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

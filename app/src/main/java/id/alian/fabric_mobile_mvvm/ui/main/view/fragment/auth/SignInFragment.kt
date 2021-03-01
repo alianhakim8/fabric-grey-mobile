@@ -1,6 +1,7 @@
-package id.alian.fabric_mobile_mvvm.ui.main.view.fragment
+package id.alian.fabric_mobile_mvvm.ui.main.view.fragment.auth
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
@@ -14,8 +15,12 @@ import id.alian.fabric_mobile_mvvm.R
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.databinding.FragmentSignInBinding
+import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
+import id.alian.fabric_mobile_mvvm.ui.main.view.OnBoardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.AuthViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Status
+import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
@@ -28,41 +33,69 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         setupViewModel()
         loginTextWatcher()
+
         b.btnLogin.setOnClickListener {
-            setupObservers()
+            if (connect()) {
+                requireContext().hideKeyboard(b.root)
+                val email = b.etEmail.editText?.text.toString().trim()
+                val password = b.etPassword.editText?.text.toString().trim()
+
+                viewModel.signIn(email, password).observe(this, { resource ->
+                    when (resource.status) {
+                        Status.SUCCESS -> {
+                            b.progressBar.visibility = View.GONE
+                            b.btnLogin.visibility = View.VISIBLE
+                            val token = resource.data?.body()?.token
+                            if (token != null) {
+                                Intent(requireContext(), DashboardActivity::class.java).also {
+                                    it.putExtra("token", token)
+                                    startActivity(it)
+                                    requireActivity().finish()
+                                }
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Email or Password Incorrect",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                        Status.LOADING -> {
+                            b.progressBar.visibility = View.VISIBLE
+                            b.btnLogin.visibility = View.GONE
+                        }
+
+                        Status.ERROR -> {
+                            b.progressBar.visibility = View.GONE
+                            b.btnLogin.visibility = View.VISIBLE
+                            Toast.makeText(
+                                requireContext(),
+                                resource.data?.message(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                })
+            } else {
+                requireContext().hideKeyboard(b.root)
+                Toast.makeText(requireContext(), "No Internet", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // icon back button on click listener
+        b.materialToolbar.setNavigationOnClickListener {
+            Intent(requireContext(), OnBoardActivity::class.java).also {
+                startActivity(it)
+                requireActivity().finish()
+            }
         }
     }
 
-    private fun setupObservers() {
-        if (connect()) {
-            val email = b.etEmail.editText?.text.toString().trim()
-            val password = b.etPassword.editText?.text.toString().trim()
-            viewModel.signIn(email, password).observe(requireActivity(), {
-                if (it.data?.isSuccessful == true) {
-                    it?.let {
-                        Toast.makeText(
-                            requireContext(),
-                            it.data?.body()?.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Log.d("AUTH", "setupObservers: ${it.data?.body()?.token}")
-                    }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        it.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-        } else {
-            Toast.makeText(requireContext(), "No Internet", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(
-            this, ViewModelFactory(ApiHelper(RetrofitBuilder.apiString))
+            this, ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
         ).get(AuthViewModel::class.java)
     }
 

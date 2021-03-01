@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fabricmobilemvvm"
         android:usesCleartextTraffic="true"
+
         tools:targetApi="m">
+        <activity
+            android:name=".ui.main.view.fragment.FabricFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ui.main.view.DashboardActivity" />
         <activity android:name=".ui.main.view.OnBoardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.view.AuthActivity" />
+        <activity
+            android:name=".ui.main.view.AuthActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

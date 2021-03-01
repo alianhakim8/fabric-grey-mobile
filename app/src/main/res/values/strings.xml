@@ -8,6 +8,15 @@
     <string name="welcome_user">Welcome User</string>
     <string name="desc_sign_in">Please Sign In To Continue</string>
     <string name="username">Username</string>
-    <string name="sign_up">Sign Up</string>
     <string name="desc_sign_up">Please Sign Up To Continue</string>
+    <string name="menu">Menu</string>
+    <string name="fabric">Fabric</string>
+    <string name="report">Report</string>
+    <string name="latest_po_number">Latest Po Number</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="title_apps">Fabric Apps Grey</string>
+    <string name="desc_app">Make Your Work Modern And Easy</string>
+    <string name="machine">Machine</string>
+    <string name="todo">TODO</string>
 </resources>
