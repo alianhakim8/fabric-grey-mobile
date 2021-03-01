@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.AllFabricItemBinding
+import retrofit2.Response
 
 class AllFabricAdapter : RecyclerView.Adapter<AllFabricAdapter.ViewHolder>() {
 
