@@ -15,7 +15,8 @@
         android:theme="@style/Theme.Fabricmobilemvvm"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ui.main.view.fabric.FabricActivity"></activity>
+        <activity android:name=".ui.main.view.fabric.AddFabricActivity"></activity>
+        <activity android:name=".ui.main.view.fabric.FabricActivity" />
         <activity
             android:name=".ui.main.view.fragment.FabricFragment"
             tools:ignore="Instantiatable" />

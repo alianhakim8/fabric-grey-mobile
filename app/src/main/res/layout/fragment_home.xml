@@ -44,126 +44,83 @@
             android:textSize="@dimen/_20font_ssp"
             android:textStyle="bold" />
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10hsdp"
-            android:layout_marginEnd="@dimen/_10hsdp"
-            android:scrollbars="none">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/fabric"
+                android:layout_width="@dimen/_150hsdp"
+                android:layout_height="@dimen/_150hsdp"
+                android:layout_marginStart="@dimen/_5hsdp"
+                android:backgroundTint="@color/custom_navy"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/_10hsdp"
+                app:cardElevation="@dimen/_5hsdp"
+                app:rippleColor="@color/custom_blue">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/fabric"
-                    android:layout_width="@dimen/_150hsdp"
-                    android:layout_height="@dimen/_150hsdp"
-                    android:layout_margin="@dimen/_5hsdp"
-                    android:backgroundTint="@color/custom_navy"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="@dimen/_10hsdp"
-                    app:cardElevation="@dimen/_5hsdp"
-                    app:rippleColor="@color/custom_blue">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_90hsdp"
+                        android:contentDescription="@string/todo" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_marginTop="@dimen/_10hsdp"
+                        android:text="@string/fabric"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13font_ssp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_90hsdp"
-                            android:contentDescription="@string/todo" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/machine"
+                android:layout_width="@dimen/_150hsdp"
+                android:layout_height="@dimen/_150hsdp"
+                android:layout_marginStart="@dimen/_5hsdp"
+                android:backgroundTint="@color/custom_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/_10hsdp"
+                app:cardElevation="@dimen/_5hsdp"
+                app:rippleColor="@color/custom_navy">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10hsdp"
-                            android:text="@string/fabric"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_13font_ssp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/machine"
-                    android:layout_width="@dimen/_150hsdp"
-                    android:layout_height="@dimen/_150hsdp"
-                    android:layout_margin="@dimen/_5hsdp"
-                    android:backgroundTint="@color/custom_blue"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="@dimen/_10hsdp"
-                    app:cardElevation="@dimen/_5hsdp"
-                    app:rippleColor="@color/custom_navy">
+                    <ImageView
+                        android:layout_width="@dimen/_90hsdp"
+                        android:layout_height="@dimen/_90hsdp"
+                        android:contentDescription="@string/app_name" />
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_marginTop="@dimen/_10hsdp"
+                        android:text="@string/machine"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13font_ssp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                        <ImageView
-                            android:layout_width="@dimen/_90hsdp"
-                            android:layout_height="@dimen/_90hsdp"
-                            android:contentDescription="@string/app_name" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10hsdp"
-                            android:text="@string/machine"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_13font_ssp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/report"
-                    android:layout_width="@dimen/_150hsdp"
-                    android:layout_height="@dimen/_150hsdp"
-                    android:layout_margin="@dimen/_5hsdp"
-                    android:backgroundTint="@color/custom_navy"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="@dimen/_10hsdp"
-                    app:cardElevation="@dimen/_5hsdp"
-                    app:rippleColor="@color/custom_blue">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="@dimen/_90hsdp"
-                            android:layout_height="@dimen/_90hsdp"
-                            android:contentDescription="@string/app_name" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10hsdp"
-                            android:text="@string/report"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-        </HorizontalScrollView>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"

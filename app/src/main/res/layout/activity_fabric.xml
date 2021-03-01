@@ -7,25 +7,39 @@
     tools:context=".ui.main.view.fabric.FabricActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar2"
+        android:id="@+id/materialToolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/custom_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
         app:title="@string/fabric"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/custom_navy" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10hsdp"
+        android:background="@drawable/et_bg"
+        android:hint="Search"
+        android:padding="@dimen/_10hsdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar3" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10hsdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar2">
+        app:layout_constraintTop_toBottomOf="@+id/editText">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

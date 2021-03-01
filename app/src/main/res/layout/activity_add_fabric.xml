@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.view.fabric.AddFabricActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/add_fabric_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Add Fabric"
+        app:titleTextColor="@color/custom_navy" />
+
+    <EditText
+        android:id="@+id/et_fabric_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/fabric_type"
+        android:padding="@dimen/_10hsdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <EditText
+        android:id="@+id/et_fabric_brand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/fabric_brand"
+        android:padding="@dimen/_10hsdp"
+        app:layout_constraintEnd_toEndOf="@+id/et_fabric_type"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/et_fabric_type"
+        app:layout_constraintTop_toBottomOf="@+id/et_fabric_type" />
+
+    <EditText
+        android:id="@+id/et_machine_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/machine"
+        android:inputType="number"
+        android:padding="@dimen/_10hsdp"
+        app:layout_constraintEnd_toEndOf="@+id/et_fabric_brand"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/et_fabric_brand"
+        app:layout_constraintTop_toBottomOf="@+id/et_fabric_brand" />
+
+    <EditText
+        android:id="@+id/et_po_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/po_number"
+        android:inputType="number"
+        android:padding="@dimen/_10hsdp"
+        app:layout_constraintEnd_toEndOf="@+id/et_machine_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/et_machine_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_machine_id" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="@dimen/_10hsdp"
+        android:text="@string/add"
+        app:layout_constraintEnd_toEndOf="@+id/et_po_number"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_po_number"
+        app:layout_constraintTop_toBottomOf="@+id/et_po_number" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20hsdp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_po_number" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

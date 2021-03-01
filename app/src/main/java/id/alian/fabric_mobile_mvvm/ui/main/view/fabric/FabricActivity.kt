@@ -1,6 +1,7 @@
 package id.alian.fabric_mobile_mvvm.ui.main.view.fabric
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
@@ -39,6 +40,13 @@ class FabricActivity : AppCompatActivity() {
 
         b.swipeRefresh.setOnRefreshListener {
             getFabrics(token)
+        }
+
+        b.fabAddFabric.setOnClickListener {
+            Intent(this, AddFabricActivity::class.java).also {
+                it.putExtra("token", token)
+                startActivity(it)
+            }
         }
     }
 
@@ -121,4 +129,9 @@ class FabricActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val token = intent.getStringExtra("token").toString()
+        getFabrics(token)
+    }
 }

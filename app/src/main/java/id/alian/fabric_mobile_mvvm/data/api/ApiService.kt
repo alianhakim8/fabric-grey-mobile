@@ -28,4 +28,10 @@ interface ApiService {
     suspend fun getAllFabric(
         @Header("Authorization") token: String
     ): Response<List<FabricResponse>>
+
+    @POST("fabric/store")
+    suspend fun addFabric(
+        @Header("Authorization") token: String,
+        @Body fabricResponse: FabricResponse
+    ): Response<FabricResponse>
 }
