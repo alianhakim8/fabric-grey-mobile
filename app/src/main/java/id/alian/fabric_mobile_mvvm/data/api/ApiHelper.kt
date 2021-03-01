@@ -5,4 +5,6 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun signUp(email: String, userName: String, password: String) =
         apiService.signUp(email, userName, password)
+
+    suspend fun getAllFabric(token: String) = apiService.getAllFabric(token)
 }

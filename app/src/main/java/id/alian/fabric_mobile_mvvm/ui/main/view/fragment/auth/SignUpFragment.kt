@@ -17,7 +17,7 @@ import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.databinding.FragmentSignUpBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.view.OnBoardActivity
-import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.AuthViewModel
+import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
@@ -25,7 +25,7 @@ import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     private lateinit var b: FragmentSignUpBinding
-    private lateinit var viewModel: AuthViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,7 +90,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(
             this, ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(AuthViewModel::class.java)
+        ).get(MainViewModel::class.java)
     }
 
     private fun loginTextWatcher() {

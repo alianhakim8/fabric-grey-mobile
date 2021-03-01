@@ -1,10 +1,9 @@
 package id.alian.fabric_mobile_mvvm.data.api
 
 import id.alian.fabric_mobile_mvvm.data.model.AuthResponse
+import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -21,4 +20,9 @@ interface ApiService {
         @Field("username") userName: String,
         @Field("password") password: String
     ): Response<AuthResponse>
+
+    @GET("fabric/")
+    suspend fun getAllFabric(
+        @Header("Authorization") token: String
+    ): Response<List<FabricResponse>>
 }

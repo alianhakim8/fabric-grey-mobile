@@ -18,5 +18,7 @@
     <string name="title_apps">Fabric Apps Grey</string>
     <string name="desc_app">Make Your Work Modern And Easy</string>
     <string name="machine">Machine</string>
+    <string name="fabric_type">Fabric Type</string>
+    <string name="fabric_brand">Fabric Brand</string>
     <string name="todo">TODO</string>
 </resources>
