@@ -32,7 +32,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         setupViewModel()
         loginTextWatcher()
 
-        b.btnLogin.setOnClickListener {
+        b.btnSignIn.setOnClickListener {
             signIn()
         }
 
@@ -57,11 +57,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         if (email.isEmpty() && password.isEmpty()) {
             b.etEmail.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnLogin.isEnabled = !(text.isNullOrEmpty())
+                b.btnSignIn.isEnabled = !(text.isNullOrEmpty())
             }
 
             b.etPassword.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnLogin.isEnabled = !(text.isNullOrEmpty())
+                b.btnSignIn.isEnabled = !(text.isNullOrEmpty())
             }
         }
     }
@@ -76,7 +76,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         b.progressBar.visibility = View.GONE
-                        b.btnLogin.visibility = View.VISIBLE
+                        b.btnSignIn.visibility = View.VISIBLE
                         val token = resource.data?.body()?.token
                         if (token != null) {
                             Intent(context, DashboardActivity::class.java).also {
@@ -85,6 +85,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                                 activity?.finish()
                             }
                         } else {
+                            b.progressBar.visibility = View.GONE
+                            b.btnSignIn.visibility = View.VISIBLE
                             Toast.makeText(
                                 context,
                                 "Email or Password Incorrect",
@@ -95,12 +97,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
                     Status.LOADING -> {
                         b.progressBar.visibility = View.VISIBLE
-                        b.btnLogin.visibility = View.GONE
+                        b.btnSignIn.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.progressBar.visibility = View.GONE
-                        b.btnLogin.visibility = View.VISIBLE
+                        b.btnSignIn.visibility = View.VISIBLE
                         Toast.makeText(
                             context,
                             resource.data?.message(),

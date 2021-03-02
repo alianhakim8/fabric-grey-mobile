@@ -96,7 +96,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16hsdp"
@@ -111,17 +111,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-        <ProgressBar
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="@dimen/_50hsdp"
+            android:layout_height="@dimen/_50hsdp"
             android:layout_marginTop="@dimen/_8hsdp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/etPassword"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/la_login_loading" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
