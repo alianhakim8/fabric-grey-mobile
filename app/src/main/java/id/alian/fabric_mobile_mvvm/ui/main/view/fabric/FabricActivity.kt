@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.databinding.ActivityFabricBinding
+import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.view.adapter.AllFabricAdapter
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
@@ -36,14 +37,18 @@ class FabricActivity : AppCompatActivity() {
         setupRecyclerView()
         getFabrics(token)
 
-        b.swipeRefresh.setOnRefreshListener {
-            getFabrics(token)
-        }
-
         b.fabAddFabric.setOnClickListener {
             Intent(this, AddFabricActivity::class.java).also {
                 it.putExtra("token", token)
                 startActivity(it)
+            }
+        }
+
+        b.tbFabric.setNavigationOnClickListener {
+            Intent(this, DashboardActivity::class.java).also {
+                it.putExtra("token", token)
+                startActivity(it)
+                finish()
             }
         }
     }
@@ -65,14 +70,15 @@ class FabricActivity : AppCompatActivity() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.body().also {
+                            b.progressBar.visibility = View.GONE
                             b.recyclerView.visibility = View.VISIBLE
                             b.fabAddFabric.visibility = View.VISIBLE
                             if (it != null) {
-                                b.swipeRefresh.isRefreshing = false
+                                b.progressBar.visibility = View.GONE
                                 b.laNotFound.visibility = View.GONE
                                 fabricAdapter.setData(it)
                             } else {
-                                b.swipeRefresh.isRefreshing = false
+                                b.progressBar.visibility = View.GONE
                                 b.recyclerView.visibility = View.GONE
                                 b.fabAddFabric.visibility = View.GONE
                                 b.laNotFound.visibility = View.VISIBLE
@@ -81,13 +87,13 @@ class FabricActivity : AppCompatActivity() {
                         }
                     }
                     Status.LOADING -> {
-                        b.swipeRefresh.isRefreshing = true
+                        b.progressBar.visibility = View.VISIBLE
                         b.recyclerView.visibility = View.GONE
                         b.fabAddFabric.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.swipeRefresh.isRefreshing = false
+                        b.progressBar.visibility = View.GONE
                         b.recyclerView.visibility = View.GONE
                         b.fabAddFabric.visibility = View.GONE
                         b.laNotFound.visibility = View.VISIBLE
@@ -96,16 +102,50 @@ class FabricActivity : AppCompatActivity() {
                 }
             })
         } else {
+            b.progressBar.visibility = View.GONE
             b.recyclerView.visibility = View.GONE
             b.fabAddFabric.visibility = View.GONE
             b.laNotFound.visibility = View.VISIBLE
-            b.swipeRefresh.isRefreshing = false
         }
     }
 
     override fun onResume() {
         super.onResume()
         val token = intent.getStringExtra("token").toString()
-        getFabrics(token)
+        viewModel.getAllFabric("Bearer $token").observe(this, { resource ->
+            when (resource.status) {
+                Status.SUCCESS -> {
+                    resource.data?.body().also {
+                        b.progressBar.visibility = View.GONE
+                        b.recyclerView.visibility = View.VISIBLE
+                        b.fabAddFabric.visibility = View.VISIBLE
+                        if (it != null) {
+                            b.progressBar.visibility = View.GONE
+                            b.laNotFound.visibility = View.GONE
+                            fabricAdapter.setData(it)
+                        } else {
+                            b.progressBar.visibility = View.GONE
+                            b.recyclerView.visibility = View.GONE
+                            b.fabAddFabric.visibility = View.GONE
+                            b.laNotFound.visibility = View.VISIBLE
+                        }
+                        Log.d("TAG", "setupObservers: $it")
+                    }
+                }
+                Status.LOADING -> {
+                    b.progressBar.visibility = View.VISIBLE
+                    b.recyclerView.visibility = View.GONE
+                    b.fabAddFabric.visibility = View.GONE
+                }
+
+                Status.ERROR -> {
+                    b.progressBar.visibility = View.GONE
+                    b.recyclerView.visibility = View.GONE
+                    b.fabAddFabric.visibility = View.GONE
+                    b.laNotFound.visibility = View.VISIBLE
+                    Log.d("TAG", "setupObservers: ${resource.message}")
+                }
+            }
+        })
     }
 }

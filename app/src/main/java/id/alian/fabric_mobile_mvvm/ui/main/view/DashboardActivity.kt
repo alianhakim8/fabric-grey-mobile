@@ -64,6 +64,5 @@ class DashboardActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 }

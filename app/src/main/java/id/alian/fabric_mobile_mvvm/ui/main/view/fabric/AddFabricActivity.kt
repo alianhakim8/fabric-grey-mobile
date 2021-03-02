@@ -1,5 +1,6 @@
 package id.alian.fabric_mobile_mvvm.ui.main.view.fabric
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -35,6 +36,13 @@ class AddFabricActivity : AppCompatActivity() {
             val body = FabricResponse(0, fabricType, machineId, fabricBrand, poNumber)
             addFabric(token, body)
         }
+
+        b.tbAddFabric.setNavigationOnClickListener {
+            Intent(this, FabricActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
     }
 
     private fun setupViewModel() {
@@ -45,7 +53,7 @@ class AddFabricActivity : AppCompatActivity() {
 
     private fun addFabric(token: String, body: FabricResponse) {
         if (this.connect()) {
-            viewModel.addFabric(token, body).observe(this, { resource ->
+            viewModel.addFabric("Bearer $token", body).observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
                         b.progressBar.visibility = View.GONE

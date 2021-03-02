@@ -47,13 +47,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5hsdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_5hsdp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/fabric"
-                android:layout_width="@dimen/_150hsdp"
+                android:layout_width="@dimen/_120hsdp"
                 android:layout_height="@dimen/_150hsdp"
-                android:layout_marginStart="@dimen/_5hsdp"
                 android:backgroundTint="@color/custom_navy"
                 android:clickable="true"
                 android:focusable="true"
@@ -86,9 +88,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/machine"
-                android:layout_width="@dimen/_150hsdp"
+                android:layout_width="@dimen/_120hsdp"
                 android:layout_height="@dimen/_150hsdp"
                 android:layout_marginStart="@dimen/_5hsdp"
+                android:layout_marginEnd="@dimen/_5hsdp"
                 android:backgroundTint="@color/custom_blue"
                 android:clickable="true"
                 android:focusable="true"
