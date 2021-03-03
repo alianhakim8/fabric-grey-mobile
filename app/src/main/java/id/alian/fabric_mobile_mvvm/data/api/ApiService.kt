@@ -34,4 +34,16 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body fabricResponse: FabricResponse
     ): Response<FabricResponse>
+
+    @PUT("fabric/update/{id}")
+    suspend fun updateFabric(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Response<FabricResponse>
+
+    @DELETE("fabric/delete/{id}")
+    suspend fun deleteFabric(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    )
 }

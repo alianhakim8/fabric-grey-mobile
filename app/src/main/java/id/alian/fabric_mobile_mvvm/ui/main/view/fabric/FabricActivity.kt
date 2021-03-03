@@ -9,21 +9,23 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
+import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.ActivityFabricBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.view.adapter.AllFabricAdapter
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.OnItemClickListener
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
 
-class FabricActivity : AppCompatActivity() {
+class FabricActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var b: ActivityFabricBinding
     private lateinit var viewModel: MainViewModel
 
     private val fabricAdapter by lazy {
-        AllFabricAdapter()
+        AllFabricAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,5 +149,22 @@ class FabricActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onItemClick(status: String, data: FabricResponse?) {
+        val token = intent.getStringExtra("token").toString()
+        if (status == "update") {
+            Intent(this, UpdateFabricActivity::class.java).also {
+                it.putExtra("token", token)
+                it.putExtra("data", data)
+                startActivity(it)
+            }
+        } else {
+            Intent(this, FabricDetailActivity::class.java).also {
+                it.putExtra("token", token)
+                it.putExtra("data", data)
+                startActivity(it)
+            }
+        }
     }
 }

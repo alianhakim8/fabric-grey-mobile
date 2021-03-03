@@ -25,4 +25,10 @@
     <string name="failed_to_get_data">Failed To Get Data :(</string>
     <string name="po_number">Po Number</string>
     <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="supporting_text">This will delete fabric</string>
+    <string name="title_dialog">Delete Fabric ?</string>
 </resources>

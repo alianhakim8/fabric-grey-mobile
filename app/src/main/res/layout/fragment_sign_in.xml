@@ -54,7 +54,6 @@
             android:layout_marginStart="@dimen/_16hsdp"
             android:layout_marginTop="@dimen/_10hsdp"
             android:layout_marginEnd="@dimen/_16hsdp"
-            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,9 +63,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/et_bg"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
+                android:importantForAutofill="no"
+                android:inputType="textFilter|textEmailAddress|textNoSuggestions"
                 android:textSize="@dimen/_13font_ssp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,17 +78,15 @@
             android:layout_marginStart="@dimen/_16hsdp"
             android:layout_marginTop="@dimen/_8hsdp"
             android:layout_marginEnd="@dimen/_16hsdp"
-            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etEmail"
             app:passwordToggleEnabled="true">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/et_bg"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textSize="@dimen/_13font_ssp" />

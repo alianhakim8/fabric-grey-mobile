@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 
 // hide soft keyboard
 fun Context.hideKeyboard(view: View) {
@@ -37,4 +38,9 @@ fun Context.connect(): Boolean {
         }
     }
     return false
+}
+
+// recycler view on item click
+interface OnItemClickListener {
+    fun onItemClick(status:String,data: FabricResponse?)
 }
