@@ -15,7 +15,8 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun addFabric(token: String, body: FabricResponse) = apiService.addFabric(token, body)
 
-    suspend fun updateFabric(token: String, id: String) = apiService.updateFabric(token, id)
+    suspend fun updateFabric(token: String, id: String, data: FabricResponse) =
+        apiService.updateFabric(token, id, data)
 
     suspend fun deleteFabric(token: String, id: String) = apiService.deleteFabric(token, id)
 }

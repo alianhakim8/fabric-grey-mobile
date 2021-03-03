@@ -6,7 +6,6 @@ import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.data.repository.MainRepository
 import id.alian.fabric_mobile_mvvm.utils.Resource
 import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
@@ -48,10 +47,10 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
-    fun updateFabric(token: String, id: String) = liveData(Dispatchers.IO) {
+    fun updateFabric(token: String, id: String, data: FabricResponse) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = mainRepository.updateFabric(token, id)))
+            emit(Resource.success(data = mainRepository.updateFabric(token, id, data)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred"))
         }

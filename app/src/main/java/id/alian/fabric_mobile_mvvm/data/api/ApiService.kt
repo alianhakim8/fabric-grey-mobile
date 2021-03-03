@@ -39,6 +39,7 @@ interface ApiService {
     suspend fun updateFabric(
         @Header("Authorization") token: String,
         @Path("id") id: String,
+        @Body data: FabricResponse
     ): Response<FabricResponse>
 
     @DELETE("fabric/delete/{id}")

@@ -16,7 +16,8 @@ class MainRepository(private val apiHelper: ApiHelper) {
 
     suspend fun addFabric(token: String, body: FabricResponse) = apiHelper.addFabric(token, body)
 
-    suspend fun updateFabric(token: String, id: String) = apiHelper.updateFabric(token, id)
+    suspend fun updateFabric(token: String, id: String, data: FabricResponse) =
+        apiHelper.updateFabric(token, id, data)
 
     suspend fun deleteFabric(token: String, id: String) = apiHelper.deleteFabric(token, id)
 }

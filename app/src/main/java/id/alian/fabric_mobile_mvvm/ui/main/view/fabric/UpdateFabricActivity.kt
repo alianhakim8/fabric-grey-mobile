@@ -32,12 +32,23 @@ class UpdateFabricActivity : AppCompatActivity() {
         val id = data.id.toString()
         deleteFabric(token, id)
         b.etUpdateType.editText?.setText(data.fabricType)
-        b.etUpdateType.editText?.setText(data.fabricBrand)
-        b.etUpdateType.editText?.setText(data.machineID)
-        b.etUpdateType.editText?.setText(data.poNumber)
+        b.etUpdateBrand.editText?.setText(data.fabricBrand)
+        b.etUpdateMachine.editText?.setText(data.machineID.toString())
+        b.etPoNumber.editText?.setText(data.poNumber.toString())
 
         b.btnUpdate.setOnClickListener {
-            updateFabric(token, id)
+            val type = b.etUpdateType.editText?.text.toString()
+            val brand = b.etUpdateBrand.editText?.text.toString()
+            val machine = b.etUpdateMachine.editText?.text.toString()
+            val poNumber = b.etPoNumber.editText?.text.toString()
+            val fabricData = FabricResponse(
+                Integer.parseInt(id),
+                type,
+                Integer.parseInt(machine),
+                brand,
+                Integer.parseInt(poNumber)
+            )
+            updateFabric(token, id, fabricData)
         }
     }
 
@@ -45,6 +56,39 @@ class UpdateFabricActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(
             this, ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
         ).get(MainViewModel::class.java)
+    }
+
+    private fun updateFabric(token: String, id: String, data: FabricResponse) {
+        viewModel.updateFabric(token, id, data).observe(this, {
+            if (this.connect()) {
+                viewModel.updateFabric("Bearer $token", id, data)
+                    .observe(this, { resource ->
+                        when (resource.status) {
+                            Status.SUCCESS -> {
+                                Toast.makeText(
+                                    this,
+                                    "Update Success",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                this.hideKeyboard(b.root)
+                                finish()
+                            }
+                            Status.LOADING -> {
+                                this.hideKeyboard(b.root)
+                                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                            }
+
+                            Status.ERROR -> {
+                                this.hideKeyboard(b.root)
+                                Toast.makeText(this, "Failed Delete", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
+            } else {
+                this.hideKeyboard(b.root)
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun deleteFabric(token: String, id: String) {
@@ -63,7 +107,6 @@ class UpdateFabricActivity : AppCompatActivity() {
                             finish()
                         }
                         .show()
-                    this.hideKeyboard(b.root)
                     true
                 }
                 else -> false
@@ -83,50 +126,26 @@ class UpdateFabricActivity : AppCompatActivity() {
                                 "Delete Success",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            this.hideKeyboard(b.root)
                             finish()
+
                         }
                         Status.LOADING -> {
                             Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                            this.hideKeyboard(b.root)
 
                         }
 
                         Status.ERROR -> {
                             Toast.makeText(this, "Failed Delete", Toast.LENGTH_SHORT).show()
+                            this.hideKeyboard(b.root)
                         }
                     }
                 })
         } else {
+            this.hideKeyboard(b.root)
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun updateFabric(token: String, id: String) {
-        viewModel.updateFabric(token, id).observe(this, {
-            if (this.connect()) {
-                viewModel.deleteFabric("Bearer $token", id)
-                    .observe(this, { resource ->
-                        when (resource.status) {
-                            Status.SUCCESS -> {
-                                Toast.makeText(
-                                    this,
-                                    "Update Success",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                finish()
-                            }
-                            Status.LOADING -> {
-                                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
-
-                            }
-
-                            Status.ERROR -> {
-                                Toast.makeText(this, "Failed Delete", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    })
-            } else {
-                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 }
