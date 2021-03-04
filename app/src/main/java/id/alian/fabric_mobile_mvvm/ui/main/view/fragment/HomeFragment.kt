@@ -40,22 +40,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewPager2.adapter = adapter
 
         val sample1 = ViewPagerModel(
-            "Fabric Machine 1",
+            "Fabric Machine",
             "https://images.unsplash.com/photo-1612685181136-55a7f2548066?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1297&q=80"
         )
         fabricDashboard.add(sample1)
-
-        val sample2 = ViewPagerModel(
-            "Fabric Machine 2",
-            "https://images.unsplash.com/photo-1612677257608-90309859bbec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"
-        )
-        fabricDashboard.add(sample2)
-
-        val sample3 = ViewPagerModel(
-            "Fabric Machine 3",
-            "https://images.unsplash.com/photo-1585765530409-3f1f87773b22?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1977&q=80"
-        )
-        fabricDashboard.add(sample3)
     }
 
     override fun onResume() {

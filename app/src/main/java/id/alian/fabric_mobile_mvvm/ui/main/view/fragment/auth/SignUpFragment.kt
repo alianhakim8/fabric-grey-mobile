@@ -7,12 +7,12 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import id.alian.fabric_mobile_mvvm.R
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.databinding.FragmentSignUpBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
-import id.alian.fabric_mobile_mvvm.ui.main.view.OnBoardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
 import id.alian.fabric_mobile_mvvm.utils.Status
@@ -27,8 +27,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         b = FragmentSignUpBinding.bind(view)
-        val context = requireContext()
-        val activity = requireActivity()
         setupViewModel()
         loginTextWatcher()
 
@@ -38,10 +36,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
         // icon back button on click listener
         b.materialToolbar.setNavigationOnClickListener {
-            Intent(context, OnBoardActivity::class.java).also {
-                startActivity(it)
-                activity.finish()
-            }
+            it.findNavController().navigate(R.id.action_signUpFragment_to_onBoardFragment)
         }
     }
 

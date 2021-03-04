@@ -8,14 +8,16 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fabricmobilemvvm"
         android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="stateHidden"
         tools:targetApi="m">
-        <activity android:name=".ui.main.view.fabric.FabricDetailActivity"></activity>
+        <activity android:name=".ui.main.view.fabric.FabricDetailActivity" />
         <activity android:name=".ui.main.view.fabric.UpdateFabricActivity" />
         <activity android:name=".ui.main.view.fabric.AddFabricActivity" />
         <activity android:name=".ui.main.view.fabric.FabricActivity" />
@@ -23,16 +25,13 @@
             android:name=".ui.main.view.fragment.FabricFragment"
             tools:ignore="Instantiatable" />
         <activity android:name=".ui.main.view.DashboardActivity" />
-        <activity android:name=".ui.main.view.OnBoardActivity">
+        <activity android:name=".ui.main.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.main.view.AuthActivity"
-            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

@@ -5,54 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/_10hsdp"
-    tools:context=".ui.main.view.OnBoardActivity">
+    tools:context=".ui.main.view.MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/title_apps"
-        android:textColor="@color/custom_blue"
+        android:textColor="@color/custom_navy"
         android:textSize="@dimen/_20font_ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/desc_app"
         android:textSize="@dimen/_10font_ssp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <Button
-        android:id="@+id/btnToSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10hsdp"
-        android:text="@string/sign_up"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/btnToSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnToSignIn"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10hsdp"
-        android:text="@string/sign_in"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/_200hsdp"
+        android:layout_height="@dimen/_200hsdp"
+        android:src="@drawable/im_on_board"
+        app:layout_constraintBottom_toTopOf="@+id/btnToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/custom_blue" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnToSignUp"
+        android:layout_width="@dimen/_250hsdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_12hsdp"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/_10hsdp"
+        app:elevation="@dimen/_5hsdp"
+        app:layout_constraintBottom_toTopOf="@+id/btnToSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/desc_auth"
+        android:textColor="#2E4357"
+        app:layout_constraintBottom_toBottomOf="@+id/btnToSignIn"
+        app:layout_constraintEnd_toStartOf="@+id/btnToSignIn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnToSignIn" />
+
+    <Button
+        android:id="@+id/btnToSignIn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:text="@string/sign_in"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_navy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView11" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

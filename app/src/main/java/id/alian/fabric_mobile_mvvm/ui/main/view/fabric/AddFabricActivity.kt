@@ -36,13 +36,6 @@ class AddFabricActivity : AppCompatActivity() {
             val body = FabricResponse(0, fabricType, machineId, fabricBrand, poNumber)
             addFabric(token, body)
         }
-
-        b.tbAddFabric.setNavigationOnClickListener {
-            Intent(this, FabricActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
-        }
     }
 
     private fun setupViewModel() {

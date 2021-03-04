@@ -31,10 +31,7 @@ class UpdateFabricActivity : AppCompatActivity() {
         val data = intent.getSerializableExtra("data") as FabricResponse
         val id = data.id.toString()
         deleteFabric(token, id)
-        b.etUpdateType.editText?.setText(data.fabricType)
-        b.etUpdateBrand.editText?.setText(data.fabricBrand)
-        b.etUpdateMachine.editText?.setText(data.machineID.toString())
-        b.etPoNumber.editText?.setText(data.poNumber.toString())
+        setTextEditText(data)
 
         b.btnUpdate.setOnClickListener {
             val type = b.etUpdateType.editText?.text.toString()
@@ -146,6 +143,13 @@ class UpdateFabricActivity : AppCompatActivity() {
             this.hideKeyboard(b.root)
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setTextEditText(data: FabricResponse) {
+        b.etUpdateType.editText?.setText(data.fabricType)
+        b.etUpdateBrand.editText?.setText(data.fabricBrand)
+        b.etUpdateMachine.editText?.setText(data.machineID.toString())
+        b.etPoNumber.editText?.setText(data.poNumber.toString())
     }
 
 }

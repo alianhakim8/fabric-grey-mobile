@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".ui.main.view.AuthActivity">
+    tools:context=".ui.main.view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16hsdp"
-            android:text="@string/welcome_user"
+            android:text="@string/sign_up_text"
             android:textColor="@color/custom_blue"
             android:textSize="@dimen/_20font_ssp"
             android:textStyle="bold"

@@ -15,7 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/fabric_add_menu"
-        app:navigationIcon="@drawable/ic_back"
         app:title="Update Fabric" />
 
     <ScrollView

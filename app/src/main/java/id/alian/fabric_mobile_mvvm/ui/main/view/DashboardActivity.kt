@@ -33,6 +33,7 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.home -> {
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragment, homeFragment)
+                        this.setCustomAnimations(R.animator.fade_in, R.animator.fade_out)
                         commit()
                     }
                     true

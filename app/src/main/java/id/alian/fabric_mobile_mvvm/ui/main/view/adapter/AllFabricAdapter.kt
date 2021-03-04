@@ -3,16 +3,25 @@ package id.alian.fabric_mobile_mvvm.ui.main.view.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.AllFabricItemBinding
 import id.alian.fabric_mobile_mvvm.utils.OnItemClickListener
-import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AllFabricAdapter(private val itemClick: OnItemClickListener) :
-    RecyclerView.Adapter<AllFabricAdapter.ViewHolder>() {
+    RecyclerView.Adapter<AllFabricAdapter.ViewHolder>(), Filterable {
 
     private var fabricList = emptyList<FabricResponse>()
+    val list: MutableList<FabricResponse> = ArrayList()
+    private var fabricFilterList: List<FabricResponse> = ArrayList()
+
+    init {
+        fabricFilterList = fabricList
+    }
 
     inner class ViewHolder(val binding: AllFabricItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -54,4 +63,35 @@ class AllFabricAdapter(private val itemClick: OnItemClickListener) :
         notifyDataSetChanged()
     }
 
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                if (constraint == null || constraint.isEmpty()) {
+                    fabricFilterList = fabricList
+                } else {
+                    val filterPattern: String = constraint.toString().toLowerCase(Locale.ROOT)
+                        .trim()
+                    val resultList = ArrayList<FabricResponse>()
+                    for (fabricItem in fabricList) {
+                        if (fabricItem.fabricBrand.toLowerCase(Locale.ROOT)
+                                .contains(filterPattern)
+                        ) {
+                            resultList.add(fabricItem)
+                        }
+                    }
+                    fabricFilterList = resultList
+                }
+                val filterResult = FilterResults()
+                filterResult.values = fabricFilterList
+                return filterResult
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                fabricList = results?.values as ArrayList<FabricResponse>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
 }

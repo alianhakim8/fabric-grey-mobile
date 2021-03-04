@@ -5,17 +5,17 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Sign In</string>
-    <string name="welcome_user">Welcome User</string>
+    <string name="welcome_user">Welcome Back, User</string>
     <string name="desc_sign_in">Please Sign In To Continue</string>
     <string name="username">Username</string>
     <string name="desc_sign_up">Please Sign Up To Continue</string>
-    <string name="menu">MENU</string>
+    <string name="menu">Menu</string>
     <string name="fabric">Fabric</string>
     <string name="report">Report</string>
-    <string name="latest_po_number">LATEST PO NUMBER</string>
+    <string name="latest_po_number">Latest Po Number</string>
     <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="title_apps">Fabric Apps Grey</string>
+    <string name="sign_up">SignUp</string>
+    <string name="title_apps">Fabric Grey</string>
     <string name="desc_app">Make Your Work Modern And Easy</string>
     <string name="machine">Machine</string>
     <string name="fabric_type">Fabric Type</string>
@@ -31,4 +31,6 @@
     <string name="decline">Decline</string>
     <string name="supporting_text">This will delete fabric</string>
     <string name="title_dialog">Delete Fabric ?</string>
+    <string name="desc_auth">Already Have An Account?</string>
+    <string name="sign_up_text">Let\'s Get Started</string>
 </resources>

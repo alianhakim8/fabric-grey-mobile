@@ -4,7 +4,7 @@
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/ic_user"
-        android:title="Home"
+        android:icon="@drawable/ic_notification"
+        android:title="Notification"
         app:showAsAction="ifRoom" />
 </menu>

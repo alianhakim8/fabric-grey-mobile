@@ -11,4 +11,7 @@
     <color name="custom_dark_blue">#4A70D3</color>
     <color name="custom_light_gray">#F3F3F3</color>
     <color name="custom_navy">#102E4A</color>
+    <color name="custom_flat_brown">#de8e68</color>
+    <color name="custom_flat_dark_brown">#d37c59</color>
+    <color name="custom_flat_teal">#74d5de</color>
 </resources>

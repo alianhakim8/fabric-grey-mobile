@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
+import android.widget.SearchView
+import androidx.appcompat.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +22,7 @@ import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
 import id.alian.fabric_mobile_mvvm.utils.OnItemClickListener
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
+import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class FabricActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -32,12 +37,12 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         b = ActivityFabricBinding.inflate(layoutInflater)
         setContentView(b.root)
-
         val token = intent.getStringExtra("token").toString()
         Log.d("TAG", "onCreate: $token")
         setupViewModel()
         setupRecyclerView()
         getFabrics(token)
+        searchFabric(token)
 
         b.fabAddFabric.setOnClickListener {
             Intent(this, AddFabricActivity::class.java).also {
@@ -53,6 +58,35 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
                 finish()
             }
         }
+    }
+
+    private fun searchFabric(token: String) {
+        b.svFabric.queryHint = "Search Brand..."
+        b.svFabric.isFocusable = false;
+        b.svFabric.isIconified = false;
+        b.svFabric.clearFocus();
+        b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
+        b.svFabric.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                b.svFabric.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText?.isEmpty() == true) {
+                    getFabrics(token)
+                    b.svFabric.clearFocus()
+                    b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
+                } else {
+                    fabricAdapter.filter.filter(newText)
+                    b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
+                }
+                return false
+            }
+        })
+
+
     }
 
     private fun setupViewModel() {
@@ -166,5 +200,10 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
                 startActivity(it)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }
