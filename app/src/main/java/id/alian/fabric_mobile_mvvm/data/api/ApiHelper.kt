@@ -13,6 +13,8 @@ class ApiHelper(private val apiService: ApiService) {
     // Fabric
     suspend fun getAllFabric(token: String) = apiService.getAllFabric(token)
 
+    suspend fun getLastFabric(token: String) = apiService.getLastFabric(token)
+
     suspend fun addFabric(token: String, body: FabricResponse) = apiService.addFabric(token, body)
 
     suspend fun updateFabric(token: String, id: String, data: FabricResponse) =

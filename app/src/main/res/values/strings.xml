@@ -6,9 +6,9 @@
     <string name="password">Password</string>
     <string name="log_in">Sign In</string>
     <string name="welcome_user">Welcome Back !</string>
-    <string name="desc_sign_in">Please Sign In To Continue</string>
+    <string name="desc_sign_in">Please sign in to continue</string>
     <string name="username">Username</string>
-    <string name="desc_sign_up">Please Sign Up To Continue</string>
+    <string name="desc_sign_up">Please sign up to continue</string>
     <string name="menu">Menu</string>
     <string name="fabric">Fabric</string>
     <string name="report">Report</string>

@@ -46,10 +46,10 @@ class AllFabricAdapter(private val itemClick: OnItemClickListener) :
 
         // handle on item click
         holder.binding.root.setOnClickListener {
-            itemClick.onItemClick("update", data)
-        }
-        holder.binding.imFabricDetail.setOnClickListener {
             itemClick.onItemClick("detail", data)
+        }
+        holder.binding.imUpdate.setOnClickListener {
+            itemClick.onItemClick("update", data)
         }
 
     }
@@ -62,7 +62,6 @@ class AllFabricAdapter(private val itemClick: OnItemClickListener) :
         fabricList = newFabricList
         notifyDataSetChanged()
     }
-
 
     override fun getFilter(): Filter {
         return object : Filter() {

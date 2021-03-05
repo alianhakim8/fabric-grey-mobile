@@ -1,6 +1,7 @@
 package id.alian.fabric_mobile_mvvm.data.api
 
 import id.alian.fabric_mobile_mvvm.data.model.AuthResponse
+import id.alian.fabric_mobile_mvvm.data.model.Fabric
 import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -28,6 +29,11 @@ interface ApiService {
     suspend fun getAllFabric(
         @Header("Authorization") token: String
     ): Response<List<FabricResponse>>
+
+    @GET("fabric/last/data")
+    suspend fun getLastFabric(
+        @Header("Authorization") token: String
+    ): Response<Fabric>
 
     @POST("fabric/store")
     suspend fun addFabric(

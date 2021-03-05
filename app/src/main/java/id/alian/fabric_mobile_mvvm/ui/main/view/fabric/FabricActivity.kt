@@ -50,14 +50,6 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
                 startActivity(it)
             }
         }
-
-        b.tbFabric.setNavigationOnClickListener {
-            Intent(this, DashboardActivity::class.java).also {
-                it.putExtra("token", token)
-                startActivity(it)
-                finish()
-            }
-        }
     }
 
     private fun searchFabric(token: String) {
@@ -85,8 +77,6 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
                 return false
             }
         })
-
-
     }
 
     private fun setupViewModel() {

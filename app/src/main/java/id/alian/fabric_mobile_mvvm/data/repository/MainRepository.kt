@@ -14,6 +14,8 @@ class MainRepository(private val apiHelper: ApiHelper) {
     // Fabric
     suspend fun getAllFabric(token: String) = apiHelper.getAllFabric(token)
 
+    suspend fun getLastFabric(token: String) = apiHelper.getLastFabric(token)
+
     suspend fun addFabric(token: String, body: FabricResponse) = apiHelper.addFabric(token, body)
 
     suspend fun updateFabric(token: String, id: String, data: FabricResponse) =

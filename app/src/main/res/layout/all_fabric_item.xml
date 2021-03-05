@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp">
@@ -52,14 +51,14 @@
             app:layout_constraintTop_toTopOf="@+id/textView5" />
 
         <ImageView
-            android:id="@+id/im_fabric_detail"
+            android:id="@+id/im_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_10hsdp"
-            android:src="@drawable/ic_fabric_detail"
+            android:src="@drawable/ic_update"
             app:layout_constraintBottom_toBottomOf="@+id/tv_fabric_brand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_fabric_type"

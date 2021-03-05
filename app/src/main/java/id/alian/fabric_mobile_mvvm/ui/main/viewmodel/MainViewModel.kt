@@ -38,6 +38,15 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
+    fun getLastFabric(token: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = mainRepository.getLastFabric(token)))
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error Occurred"))
+        }
+    }
+
     fun addFabric(token: String, body: FabricResponse) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {

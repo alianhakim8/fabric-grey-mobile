@@ -7,18 +7,29 @@
     android:padding="@dimen/_10hsdp"
     tools:context=".ui.main.view.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_50hsdp"
+        android:layout_height="@dimen/_50hsdp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/title_apps"
-        android:textColor="@color/custom_navy"
+        android:textColor="@color/custom_blue"
         android:textSize="@dimen/_20font_ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/textView12"
@@ -79,7 +90,7 @@
         android:text="@string/sign_in"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/custom_navy"
+        android:textColor="@color/custom_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
