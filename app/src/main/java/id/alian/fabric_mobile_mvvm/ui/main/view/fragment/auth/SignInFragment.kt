@@ -13,7 +13,6 @@ import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.databinding.FragmentSignInBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
-import id.alian.fabric_mobile_mvvm.ui.main.view.MainActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
 import id.alian.fabric_mobile_mvvm.utils.Status
@@ -98,11 +97,13 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
                     Status.ERROR -> {
                         b.btnSignIn.visibility = View.VISIBLE
-                        Toast.makeText(
-                            context,
-                            resource.data?.message(),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        if (resource.data?.body()?.message == null) {
+                            Toast.makeText(
+                                context,
+                                "Server Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             })
