@@ -7,31 +7,33 @@
     tools:context=".ui.main.view.fabric.FabricDetailActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar2"
+        android:id="@+id/tb_fabric_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:navigationIcon="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Fabric Detail" />
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/fabric_detail" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/_16hsdp"
         android:text="@string/fabric_brand"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/tb_fabric_detail" />
 
     <TextView
         android:id="@+id/tv_fabric_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/_8hsdp"
         android:text="@string/fabric_brand"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
@@ -40,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fabric_type"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -48,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/machine"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -56,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fabric_type"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/tv_fabric_brand"
         app:layout_constraintTop_toBottomOf="@+id/tv_fabric_brand" />
 
@@ -64,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/machine"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/tv_fabric_type"
         app:layout_constraintTop_toBottomOf="@+id/tv_fabric_type" />
 
@@ -72,14 +78,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/po_number"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
+
         android:id="@+id/tv_po_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/po_number"
+        android:textColor="@color/custom_navy"
         app:layout_constraintStart_toStartOf="@+id/tv_machine"
         app:layout_constraintTop_toBottomOf="@+id/tv_machine" />
 
@@ -87,10 +96,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="@dimen/_16hsdp"
+        android:layout_marginTop="@dimen/_16hsdp"
+        android:layout_marginEnd="@dimen/_16hsdp"
+        android:layout_marginBottom="@dimen/_16hsdp"
         android:background="@drawable/et_bg"
         android:padding="@dimen/_10hsdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,21 +108,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_po_number"
         app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/all_fabric_item" />
+        tools:listitem="@layout/item_detail_fabric" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="@dimen/_16hsdp"
+        android:layout_marginBottom="@dimen/_32hsdp"
         android:backgroundTint="@color/custom_blue"
         android:clickable="true"
-        app:tint="@android:color/white"
+        android:contentDescription="@string/todo"
         android:focusable="true"
         app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,25 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 startActivity(it)
             }
         }
-
-        //Get the time of day
-        val greeting: String
-        val date = Date()
-        val cal = Calendar.getInstance()
-        cal.time = date
-        val hour = cal[Calendar.HOUR_OF_DAY]
-        greeting = if (hour in 12..16) {
-            "Good Afternoon";
-        } else if (hour in 17..20) {
-            "Good Evening";
-        } else if (hour in 21..23) {
-            "Good Night";
-        } else {
-            "Good Morning";
-        }
-
-        b.topAppBar.subtitle = "$greeting User"
-        
+        greeting()
     }
 
     private fun setSliderImage() {
@@ -129,5 +111,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         getLastFabric(token!!)
     }
 
+    private fun greeting() {
+        val greeting: String
+        val date = Date()
+        val cal = Calendar.getInstance()
+        cal.time = date
+        val hour = cal[Calendar.HOUR_OF_DAY]
+        greeting = when (hour) {
+            in 12..16 -> {
+                "Good Afternoon,";
+            }
+            in 17..20 -> {
+                "Good Evening,";
+            }
+            in 21..23 -> {
+                "Good Night,";
+            }
+            else -> {
+                "Good Morning,";
+            }
+        }
+        b.topAppBar.subtitle = "$greeting User"
+
+    }
 
 }

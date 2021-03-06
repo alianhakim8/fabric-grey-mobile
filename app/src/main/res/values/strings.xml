@@ -33,4 +33,5 @@
     <string name="title_dialog">Delete Fabric ?</string>
     <string name="desc_auth">Already Have An Account?</string>
     <string name="sign_up_text">Let\'s Get Started</string>
+    <string name="fabric_detail">Fabric Detail</string>
 </resources>
