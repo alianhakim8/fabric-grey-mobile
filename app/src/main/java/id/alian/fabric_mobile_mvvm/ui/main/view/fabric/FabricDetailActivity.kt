@@ -5,25 +5,26 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.ActivityFabricDetailBinding
+import id.alian.fabric_mobile_mvvm.utils.Global
 
 class FabricDetailActivity : AppCompatActivity() {
 
-    private lateinit var b: ActivityFabricDetailBinding
+    private lateinit var binding: ActivityFabricDetailBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityFabricDetailBinding.inflate(layoutInflater)
-        setContentView(b.root)
+        binding = ActivityFabricDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val data = intent.getSerializableExtra("data") as FabricResponse
+        val data = intent.getSerializableExtra(Global.DATA) as FabricResponse
 
-        b.tvFabricBrand.text = "\t: ${data.fabricBrand}"
-        b.tvFabricType.text = "\t: ${data.fabricType}"
-        b.tvMachine.text = "\t: ${data.machineID.toString()}"
-        b.tvPoNumber.text = "\t: ${data.poNumber.toString()}"
+        binding.tvFabricBrand.text = "\t: ${data.fabricBrand}"
+        binding.tvFabricType.text = "\t: ${data.fabricType}"
+        binding.tvMachine.text = "\t: ${data.machineID}"
+        binding.tvPoNumber.text = "\t: ${data.poNumber}"
 
-        b.tbFabricDetail.setNavigationOnClickListener {
+        binding.tbFabricDetail.setNavigationOnClickListener {
             finish()
         }
     }

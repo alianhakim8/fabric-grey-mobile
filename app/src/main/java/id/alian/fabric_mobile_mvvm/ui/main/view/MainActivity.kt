@@ -8,13 +8,13 @@ import id.alian.fabric_mobile_mvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var b: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         actionBar?.hide()
-        setContentView(b.root)
+        setContentView(binding.root)
 
     }
 

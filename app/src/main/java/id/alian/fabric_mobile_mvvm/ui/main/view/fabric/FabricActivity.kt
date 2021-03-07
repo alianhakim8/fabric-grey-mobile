@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import android.widget.SearchView
-import androidx.appcompat.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,18 +13,17 @@ import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.ActivityFabricBinding
-import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.view.adapter.AllFabricAdapter
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Global
 import id.alian.fabric_mobile_mvvm.utils.OnItemClickListener
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
-import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class FabricActivity : AppCompatActivity(), OnItemClickListener {
 
-    private lateinit var b: ActivityFabricBinding
+    private lateinit var binding: ActivityFabricBinding
     private lateinit var viewModel: MainViewModel
 
     private val fabricAdapter by lazy {
@@ -35,8 +32,8 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityFabricBinding.inflate(layoutInflater)
-        setContentView(b.root)
+        binding = ActivityFabricBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val token = intent.getStringExtra("token").toString()
         Log.d("TAG", "onCreate: $token")
         setupViewModel()
@@ -44,7 +41,7 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
         getFabrics(token)
         searchFabric(token)
 
-        b.fabAddFabric.setOnClickListener {
+        binding.fabAddFabric.setOnClickListener {
             Intent(this, AddFabricActivity::class.java).also {
                 it.putExtra("token", token)
                 startActivity(it)
@@ -53,26 +50,24 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun searchFabric(token: String) {
-        b.svFabric.queryHint = "Search Brand..."
-        b.svFabric.isFocusable = false;
-        b.svFabric.isIconified = false;
-        b.svFabric.clearFocus();
-        b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
-        b.svFabric.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        binding.svFabric.queryHint = "Search Brand..."
+        binding.svFabric.isFocusable = false
+        binding.svFabric.isIconified = false
+        binding.svFabric.clearFocus()
+        binding.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
+        binding.svFabric.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                b.svFabric.clearFocus()
+                binding.svFabric.clearFocus()
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText?.isEmpty() == true) {
                     getFabrics(token)
-                    b.svFabric.clearFocus()
-                    b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
                 } else {
                     fabricAdapter.filter.filter(newText)
-                    b.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
+                    binding.svFabric.imeOptions = EditorInfo.IME_ACTION_DONE
                 }
                 return false
             }
@@ -86,8 +81,8 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun setupRecyclerView() {
-        b.recyclerView.adapter = fabricAdapter
-        b.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = fabricAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun getFabrics(token: String) {
@@ -96,42 +91,43 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.body().also {
-                            b.progressBar.visibility = View.GONE
-                            b.recyclerView.visibility = View.VISIBLE
-                            b.fabAddFabric.visibility = View.VISIBLE
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
+                            binding.fabAddFabric.visibility = View.VISIBLE
                             if (it != null) {
-                                b.progressBar.visibility = View.GONE
-                                b.laNotFound.visibility = View.GONE
+                                binding.progressBar.visibility = View.GONE
+                                binding.laNotFound.visibility = View.GONE
                                 fabricAdapter.setData(it)
                             } else {
-                                b.progressBar.visibility = View.GONE
-                                b.recyclerView.visibility = View.GONE
-                                b.fabAddFabric.visibility = View.GONE
-                                b.laNotFound.visibility = View.VISIBLE
+                                binding.progressBar.visibility = View.GONE
+                                binding.recyclerView.visibility = View.GONE
+                                binding.fabAddFabric.visibility = View.GONE
+                                binding.laNotFound.visibility = View.VISIBLE
                             }
                             Log.d("TAG", "setupObservers: $it")
                         }
                     }
                     Status.LOADING -> {
-                        b.progressBar.visibility = View.VISIBLE
-                        b.recyclerView.visibility = View.GONE
-                        b.fabAddFabric.visibility = View.GONE
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.recyclerView.visibility = View.GONE
+                        binding.fabAddFabric.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.progressBar.visibility = View.GONE
-                        b.recyclerView.visibility = View.GONE
-                        b.fabAddFabric.visibility = View.GONE
-                        b.laNotFound.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.GONE
+                        binding.fabAddFabric.visibility = View.GONE
+                        binding.laNotFound.visibility = View.VISIBLE
                         Log.d("TAG", "setupObservers: ${resource.message}")
                     }
+                    else -> TODO()
                 }
             })
         } else {
-            b.progressBar.visibility = View.GONE
-            b.recyclerView.visibility = View.GONE
-            b.fabAddFabric.visibility = View.GONE
-            b.laNotFound.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+            binding.recyclerView.visibility = View.GONE
+            binding.fabAddFabric.visibility = View.GONE
+            binding.laNotFound.visibility = View.VISIBLE
         }
     }
 
@@ -142,51 +138,52 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
             when (resource.status) {
                 Status.SUCCESS -> {
                     resource.data?.body().also {
-                        b.progressBar.visibility = View.GONE
-                        b.recyclerView.visibility = View.VISIBLE
-                        b.fabAddFabric.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.VISIBLE
+                        binding.fabAddFabric.visibility = View.VISIBLE
                         if (it != null) {
-                            b.progressBar.visibility = View.GONE
-                            b.laNotFound.visibility = View.GONE
+                            binding.progressBar.visibility = View.GONE
+                            binding.laNotFound.visibility = View.GONE
                             fabricAdapter.setData(it)
                         } else {
-                            b.progressBar.visibility = View.GONE
-                            b.recyclerView.visibility = View.GONE
-                            b.fabAddFabric.visibility = View.GONE
-                            b.laNotFound.visibility = View.VISIBLE
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.GONE
+                            binding.fabAddFabric.visibility = View.GONE
+                            binding.laNotFound.visibility = View.VISIBLE
                         }
                         Log.d("TAG", "setupObservers: $it")
                     }
                 }
                 Status.LOADING -> {
-                    b.progressBar.visibility = View.VISIBLE
-                    b.recyclerView.visibility = View.GONE
-                    b.fabAddFabric.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                    binding.fabAddFabric.visibility = View.GONE
                 }
 
                 Status.ERROR -> {
-                    b.progressBar.visibility = View.GONE
-                    b.recyclerView.visibility = View.GONE
-                    b.fabAddFabric.visibility = View.GONE
-                    b.laNotFound.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
+                    binding.fabAddFabric.visibility = View.GONE
+                    binding.laNotFound.visibility = View.VISIBLE
                     Log.d("TAG", "setupObservers: ${resource.message}")
                 }
+                else -> TODO()
             }
         })
     }
 
     override fun onItemClick(status: String, data: FabricResponse?) {
-        val token = intent.getStringExtra("token").toString()
+        val token = intent.getStringExtra(Global.TOKEN).toString()
         if (status == "update") {
             Intent(this, UpdateFabricActivity::class.java).also {
-                it.putExtra("token", token)
-                it.putExtra("data", data)
+                it.putExtra(Global.TOKEN, token)
+                it.putExtra(Global.DATA, data)
                 startActivity(it)
             }
         } else {
             Intent(this, FabricDetailActivity::class.java).also {
-                it.putExtra("token", token)
-                it.putExtra("data", data)
+                it.putExtra(Global.TOKEN, token)
+                it.putExtra(Global.DATA, data)
                 startActivity(it)
             }
         }

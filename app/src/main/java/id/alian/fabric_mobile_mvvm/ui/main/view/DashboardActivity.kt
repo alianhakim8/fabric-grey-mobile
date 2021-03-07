@@ -11,12 +11,12 @@ import id.alian.fabric_mobile_mvvm.ui.main.view.fragment.ReportFragment
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var b: ActivityDashboardBinding
+    private lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityDashboardBinding.inflate(layoutInflater)
-        setContentView(b.root)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val homeFragment = HomeFragment()
         val fabricFragment = FabricFragment()
@@ -28,7 +28,7 @@ class DashboardActivity : AppCompatActivity() {
             commit()
         }
 
-        b.bottomNavigation.setOnNavigationItemSelectedListener {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     supportFragmentManager.beginTransaction().apply {

@@ -1,6 +1,7 @@
 package id.alian.fabric_mobile_mvvm.utils
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -42,5 +43,12 @@ fun Context.connect(): Boolean {
 
 // recycler view on item click
 interface OnItemClickListener {
-    fun onItemClick(status:String,data: FabricResponse?)
+    fun onItemClick(status: String, data: FabricResponse?)
+}
+
+class Global : Application() {
+    companion object {
+        const val DATA = "data"
+        const val TOKEN = "token"
+    }
 }

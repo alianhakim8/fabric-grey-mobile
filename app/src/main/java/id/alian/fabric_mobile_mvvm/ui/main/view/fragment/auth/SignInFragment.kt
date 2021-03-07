@@ -15,27 +15,28 @@ import id.alian.fabric_mobile_mvvm.databinding.FragmentSignInBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Global
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
 import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
-    private lateinit var b: FragmentSignInBinding
+    private lateinit var binding: FragmentSignInBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        b = FragmentSignInBinding.bind(view)
+        binding = FragmentSignInBinding.bind(view)
         setupViewModel()
-        loginTextWatcher()
+        signInTextWatcher()
 
-        b.btnSignIn.setOnClickListener {
+        binding.btnSignIn.setOnClickListener {
             signIn()
         }
 
         // icon back button on click listener
-        b.materialToolbar.setNavigationOnClickListener {
+        binding.materialToolbar.setNavigationOnClickListener {
             it.findNavController().navigate(R.id.action_signInFragment_to_onBoardFragment)
         }
     }
@@ -46,42 +47,42 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         ).get(MainViewModel::class.java)
     }
 
-    private fun loginTextWatcher() {
-        val email = b.etEmail.editText?.text.toString().trim()
-        val password = b.etPassword.editText?.text.toString().trim()
+    private fun signInTextWatcher() {
+        val email = binding.etEmail.editText?.text.toString().trim()
+        val password = binding.etPassword.editText?.text.toString().trim()
 
         if (email.isEmpty() && password.isEmpty()) {
-            b.etEmail.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnSignIn.isEnabled = !(text.isNullOrEmpty())
+            binding.etEmail.editText?.doOnTextChanged { text, _, _, _ ->
+                binding.btnSignIn.isEnabled = !(text.isNullOrEmpty())
             }
 
-            b.etPassword.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnSignIn.isEnabled = !(text.isNullOrEmpty())
+            binding.etPassword.editText?.doOnTextChanged { text, _, _, _ ->
+                binding.btnSignIn.isEnabled = !(text.isNullOrEmpty())
             }
         }
     }
 
     private fun signIn() {
         if (context?.connect() == true) {
-            context!!.hideKeyboard(b.root)
-            val email = b.etEmail.editText?.text.toString().trim()
-            val password = b.etPassword.editText?.text.toString().trim()
+            context!!.hideKeyboard(binding.root)
+            val email = binding.etEmail.editText?.text.toString().trim()
+            val password = binding.etPassword.editText?.text.toString().trim()
 
             viewModel.signIn(email, password).observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        b.progressBar.visibility = View.GONE
-                        b.btnSignIn.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.btnSignIn.visibility = View.VISIBLE
                         val token = resource.data?.body()?.token
                         if (token != null) {
                             Intent(context, DashboardActivity::class.java).also {
-                                it.putExtra("token", token)
+                                it.putExtra(Global.TOKEN, token)
                                 startActivity(it)
                                 activity?.finish()
                             }
                         } else {
-                            b.progressBar.visibility = View.GONE
-                            b.btnSignIn.visibility = View.VISIBLE
+                            binding.progressBar.visibility = View.GONE
+                            binding.btnSignIn.visibility = View.VISIBLE
                             Toast.makeText(
                                 context,
                                 "Email or Password Incorrect",
@@ -91,12 +92,12 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     }
 
                     Status.LOADING -> {
-                        b.progressBar.visibility = View.VISIBLE
-                        b.btnSignIn.visibility = View.GONE
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.btnSignIn.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.btnSignIn.visibility = View.VISIBLE
+                        binding.btnSignIn.visibility = View.VISIBLE
                         if (resource.data?.body()?.message == null) {
                             Toast.makeText(
                                 context,
@@ -105,10 +106,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                             ).show()
                         }
                     }
+                    else -> TODO()
                 }
             })
         } else {
-            context?.hideKeyboard(b.root)
+            context?.hideKeyboard(binding.root)
             Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
         }
     }

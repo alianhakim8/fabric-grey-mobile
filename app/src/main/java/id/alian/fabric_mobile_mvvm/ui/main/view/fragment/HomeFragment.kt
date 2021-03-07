@@ -17,6 +17,7 @@ import id.alian.fabric_mobile_mvvm.ui.main.view.adapter.ViewPagerAdapter
 import id.alian.fabric_mobile_mvvm.ui.main.view.fabric.FabricActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Global
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
 import java.util.*
@@ -24,24 +25,24 @@ import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private lateinit var b: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        b = FragmentHomeBinding.bind(view)
+        binding = FragmentHomeBinding.bind(view)
 
         // set image to viewpager2
         setSliderImage()
 
         setupViewModel()
 
-        val token = activity?.intent?.getStringExtra("token")
+        val token = activity?.intent?.getStringExtra(Global.TOKEN)
         Log.d("TAG", "onViewCreated: $token")
         getLastFabric(token!!)
-        b.fabric.setOnClickListener {
+        binding.fabric.setOnClickListener {
             Intent(requireContext(), FabricActivity::class.java).also {
-                it.putExtra("token", token)
+                it.putExtra(Global.TOKEN, token)
                 Log.d("TAG", "onViewCreated: $token")
                 startActivity(it)
             }
@@ -50,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setSliderImage() {
-        val viewPager2 = b.viewPagerBanner
+        val viewPager2 = binding.viewPagerBanner
         val fabricDashboard: ArrayList<ViewPagerModel> = ArrayList()
         val adapter = ViewPagerAdapter(fabricDashboard)
         viewPager2.adapter = adapter
@@ -68,30 +69,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getLastFabric(token).observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        b.progressBar.visibility = View.GONE
-                        b.ponumber.visibility = View.VISIBLE
-                        b.fabricType.visibility = View.VISIBLE
-                        b.tvMachine.visibility = View.VISIBLE
-                        b.ponumber.text = resource.data?.body()?.data?.poNumber.toString()
-                        b.fabricType.text =
+                        binding.progressBar.visibility = View.GONE
+                        binding.ponumber.visibility = View.VISIBLE
+                        binding.fabricType.visibility = View.VISIBLE
+                        binding.tvMachine.visibility = View.VISIBLE
+                        binding.ponumber.text = resource.data?.body()?.data?.poNumber.toString()
+                        binding.fabricType.text =
                             "Fabric Type\t: ${resource.data?.body()?.data?.fabricType.toString()}"
-                        b.tvMachine.text =
+                        binding.tvMachine.text =
                             "Machine\t: ${resource.data?.body()?.data?.machineID.toString()}"
                     }
 
                     Status.LOADING -> {
-                        b.progressBar.visibility = View.VISIBLE
-                        b.ponumber.visibility = View.GONE
-                        b.fabricType.visibility = View.GONE
-                        b.tvMachine.visibility = View.GONE
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.ponumber.visibility = View.GONE
+                        binding.fabricType.visibility = View.GONE
+                        binding.tvMachine.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.progressBar.visibility = View.GONE
-                        b.fabricType.visibility = View.VISIBLE
-                        b.tvMachine.visibility = View.VISIBLE
-                        b.ponumber.text = "Error to get last fabric"
+                        binding.progressBar.visibility = View.GONE
+                        binding.fabricType.visibility = View.VISIBLE
+                        binding.tvMachine.visibility = View.VISIBLE
+                        binding.ponumber.text = "Error to get last fabric"
                     }
+                    else -> TODO()
                 }
             })
         } else {
@@ -107,7 +109,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onResume() {
         super.onResume()
-        val token = activity?.intent?.getStringExtra("token")
+        val token = activity?.intent?.getStringExtra(Global.TOKEN)
         getLastFabric(token!!)
     }
 
@@ -119,20 +121,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val hour = cal[Calendar.HOUR_OF_DAY]
         greeting = when (hour) {
             in 12..16 -> {
-                "Good Afternoon,";
+                "Good Afternoon,"
             }
             in 17..20 -> {
-                "Good Evening,";
+                "Good Evening,"
             }
             in 21..23 -> {
-                "Good Night,";
+                "Good Night,"
             }
             else -> {
-                "Good Morning,";
+                "Good Morning,"
             }
         }
-        b.topAppBar.subtitle = "$greeting User"
-
+        binding.topAppBar.subtitle = "$greeting User"
     }
 
 }

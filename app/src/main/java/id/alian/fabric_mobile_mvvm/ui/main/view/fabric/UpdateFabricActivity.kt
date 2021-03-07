@@ -12,32 +12,33 @@ import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.ActivityUpdateFabricBinding
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Global
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
 import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class UpdateFabricActivity : AppCompatActivity() {
 
-    private lateinit var b: ActivityUpdateFabricBinding
+    private lateinit var binding: ActivityUpdateFabricBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityUpdateFabricBinding.inflate(layoutInflater)
-        setContentView(b.root)
+        binding = ActivityUpdateFabricBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupViewModel()
 
-        val token = intent.getStringExtra("token").toString()
-        val data = intent.getSerializableExtra("data") as FabricResponse
+        val token = intent.getStringExtra(Global.TOKEN).toString()
+        val data = intent.getSerializableExtra(Global.DATA) as FabricResponse
         val id = data.id.toString()
         deleteFabric(token, id)
         setTextEditText(data)
 
-        b.btnUpdate.setOnClickListener {
-            val type = b.etUpdateType.editText?.text.toString()
-            val brand = b.etUpdateBrand.editText?.text.toString()
-            val machine = b.etUpdateMachine.editText?.text.toString()
-            val poNumber = b.etPoNumber.editText?.text.toString()
+        binding.btnUpdate.setOnClickListener {
+            val type = binding.etUpdateType.editText?.text.toString()
+            val brand = binding.etUpdateBrand.editText?.text.toString()
+            val machine = binding.etUpdateMachine.editText?.text.toString()
+            val poNumber = binding.etPoNumber.editText?.text.toString()
             val fabricData = FabricResponse(
                 Integer.parseInt(id),
                 type,
@@ -67,29 +68,30 @@ class UpdateFabricActivity : AppCompatActivity() {
                                     "Update Success",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                this.hideKeyboard(b.root)
+                                this.hideKeyboard(binding.root)
                                 finish()
                             }
                             Status.LOADING -> {
-                                this.hideKeyboard(b.root)
+                                this.hideKeyboard(binding.root)
                                 Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
                             }
 
                             Status.ERROR -> {
-                                this.hideKeyboard(b.root)
+                                this.hideKeyboard(binding.root)
                                 Toast.makeText(this, "Failed Delete", Toast.LENGTH_SHORT).show()
                             }
+                            else -> TODO()
                         }
                     })
             } else {
-                this.hideKeyboard(b.root)
+                this.hideKeyboard(binding.root)
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun deleteFabric(token: String, id: String) {
-        b.tbUpdateFabric.setOnMenuItemClickListener { menuItem ->
+        binding.tbUpdateFabric.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.delete -> {
                     MaterialAlertDialogBuilder(this)
@@ -123,33 +125,34 @@ class UpdateFabricActivity : AppCompatActivity() {
                                 "Delete Success",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            this.hideKeyboard(b.root)
+                            this.hideKeyboard(binding.root)
                             finish()
 
                         }
                         Status.LOADING -> {
                             Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
-                            this.hideKeyboard(b.root)
+                            this.hideKeyboard(binding.root)
 
                         }
 
                         Status.ERROR -> {
                             Toast.makeText(this, "Failed Delete", Toast.LENGTH_SHORT).show()
-                            this.hideKeyboard(b.root)
+                            this.hideKeyboard(binding.root)
                         }
+                        else -> TODO()
                     }
                 })
         } else {
-            this.hideKeyboard(b.root)
+            this.hideKeyboard(binding.root)
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setTextEditText(data: FabricResponse) {
-        b.etUpdateType.editText?.setText(data.fabricType)
-        b.etUpdateBrand.editText?.setText(data.fabricBrand)
-        b.etUpdateMachine.editText?.setText(data.machineID.toString())
-        b.etPoNumber.editText?.setText(data.poNumber.toString())
+        binding.etUpdateType.editText?.setText(data.fabricType)
+        binding.etUpdateBrand.editText?.setText(data.fabricBrand)
+        binding.etUpdateMachine.editText?.setText(data.machineID.toString())
+        binding.etPoNumber.editText?.setText(data.poNumber.toString())
     }
 
 }

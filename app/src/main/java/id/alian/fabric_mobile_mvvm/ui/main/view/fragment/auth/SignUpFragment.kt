@@ -15,27 +15,28 @@ import id.alian.fabric_mobile_mvvm.databinding.FragmentSignUpBinding
 import id.alian.fabric_mobile_mvvm.ui.main.view.DashboardActivity
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
+import id.alian.fabric_mobile_mvvm.utils.Global
 import id.alian.fabric_mobile_mvvm.utils.Status
 import id.alian.fabric_mobile_mvvm.utils.connect
 import id.alian.fabric_mobile_mvvm.utils.hideKeyboard
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
-    private lateinit var b: FragmentSignUpBinding
+    private lateinit var binding: FragmentSignUpBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        b = FragmentSignUpBinding.bind(view)
+        binding = FragmentSignUpBinding.bind(view)
         setupViewModel()
         loginTextWatcher()
 
-        b.btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             signUp()
         }
 
         // icon back button on click listener
-        b.materialToolbar.setNavigationOnClickListener {
+        binding.materialToolbar.setNavigationOnClickListener {
             it.findNavController().navigate(R.id.action_signUpFragment_to_onBoardFragment)
         }
     }
@@ -47,35 +48,35 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     }
 
     private fun loginTextWatcher() {
-        val email = b.etEmail.editText?.text.toString().trim()
-        val password = b.etPassword.editText?.text.toString().trim()
+        val email = binding.etEmail.editText?.text.toString().trim()
+        val password = binding.etPassword.editText?.text.toString().trim()
 
         if (email.isEmpty() && password.isEmpty()) {
-            b.etEmail.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnSignUp.isEnabled = !(text.isNullOrEmpty())
+            binding.etEmail.editText?.doOnTextChanged { text, _, _, _ ->
+                binding.btnSignUp.isEnabled = !(text.isNullOrEmpty())
             }
 
-            b.etPassword.editText?.doOnTextChanged { text, _, _, _ ->
-                b.btnSignUp.isEnabled = !(text.isNullOrEmpty())
+            binding.etPassword.editText?.doOnTextChanged { text, _, _, _ ->
+                binding.btnSignUp.isEnabled = !(text.isNullOrEmpty())
             }
         }
     }
 
     private fun signUp() {
         if (context?.connect() == true) {
-            context?.hideKeyboard(b.root)
-            val email = b.etEmail.editText?.text.toString().trim()
-            val userName = b.etPassword.editText?.text.toString().trim()
-            val password = b.etPassword.editText?.text.toString().trim()
+            context?.hideKeyboard(binding.root)
+            val email = binding.etEmail.editText?.text.toString().trim()
+            val userName = binding.etPassword.editText?.text.toString().trim()
+            val password = binding.etPassword.editText?.text.toString().trim()
             viewModel.signUp(email, userName, password).observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        b.progressBar.visibility = View.GONE
-                        b.btnSignUp.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.btnSignUp.visibility = View.VISIBLE
                         val token = resource.data?.body()?.token
                         if (token != null) {
                             Intent(context, DashboardActivity::class.java).also {
-                                it.putExtra("token", token)
+                                it.putExtra(Global.TOKEN, token)
                                 startActivity(it)
                                 activity?.finish()
                             }
@@ -89,19 +90,20 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     }
 
                     Status.LOADING -> {
-                        b.progressBar.visibility = View.VISIBLE
-                        b.btnSignUp.visibility = View.GONE
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.btnSignUp.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        b.progressBar.visibility = View.GONE
-                        b.btnSignUp.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        binding.btnSignUp.visibility = View.VISIBLE
                         Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                     }
+                    else -> TODO()
                 }
             })
         } else {
-            context?.hideKeyboard(b.root)
+            context?.hideKeyboard(binding.root)
             Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
         }
     }
