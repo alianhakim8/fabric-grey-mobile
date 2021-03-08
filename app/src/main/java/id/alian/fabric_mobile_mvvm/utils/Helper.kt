@@ -8,7 +8,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
 
 // hide soft keyboard
 fun Context.hideKeyboard(view: View) {

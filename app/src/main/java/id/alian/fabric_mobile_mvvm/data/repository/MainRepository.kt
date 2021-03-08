@@ -1,7 +1,7 @@
 package id.alian.fabric_mobile_mvvm.data.repository
 
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
-import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
 
 class MainRepository(private val api: ApiHelper) {
 
@@ -15,6 +15,8 @@ class MainRepository(private val api: ApiHelper) {
     suspend fun getAllFabric(token: String) = api.getAllFabric(token)
 
     suspend fun getLastFabric(token: String) = api.getLastFabric(token)
+
+    suspend fun getFabricDetail(token: String, id: String) = api.getFabricDetail(token, id)
 
     suspend fun addFabric(token: String, body: FabricResponse) = api.addFabric(token, body)
 

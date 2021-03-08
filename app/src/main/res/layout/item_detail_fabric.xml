@@ -15,7 +15,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fabric_type"
+            android:text="Quantities"
             android:textColor="@color/custom_navy"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,23 +24,32 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fabric_brand"
+            android:text="Oil Dirty"
             android:textColor="@color/custom_navy"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
-            android:id="@+id/tv_fabric_brand"
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Slub"
+            android:textColor="@color/custom_navy"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/tv_fabric_dirty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fabric_brand"
             android:textColor="@color/custom_navy"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/tv_fabric_type"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fabric_type" />
+            app:layout_constraintStart_toStartOf="@+id/tv_fabric_qty"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fabric_qty" />
 
         <TextView
-            android:id="@+id/tv_fabric_type"
+            android:id="@+id/tv_fabric_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20hsdp"
@@ -48,6 +57,16 @@
             android:textColor="@color/custom_navy"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/tv_fabric_slub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fabric_brand"
+            android:textColor="@color/custom_navy"
+            app:layout_constraintStart_toStartOf="@+id/tv_fabric_qty"
+            app:layout_constraintTop_toTopOf="@+id/textView7" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

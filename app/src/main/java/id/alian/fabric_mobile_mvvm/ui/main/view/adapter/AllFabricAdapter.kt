@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.AllFabricItemBinding
 import id.alian.fabric_mobile_mvvm.utils.OnItemClickListener
 import java.util.*
@@ -16,7 +16,6 @@ class AllFabricAdapter(private val itemClick: OnItemClickListener) :
     RecyclerView.Adapter<AllFabricAdapter.ViewHolder>(), Filterable {
 
     private var fabricList = emptyList<FabricResponse>()
-    val list: MutableList<FabricResponse> = ArrayList()
     private var fabricFilterList: List<FabricResponse> = ArrayList()
 
     init {
@@ -51,7 +50,6 @@ class AllFabricAdapter(private val itemClick: OnItemClickListener) :
         holder.binding.imUpdate.setOnClickListener {
             itemClick.onItemClick("update", data)
         }
-
     }
 
     override fun getItemCount(): Int {

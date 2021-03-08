@@ -1,4 +1,4 @@
-package id.alian.fabric_mobile_mvvm.data.model
+package id.alian.fabric_mobile_mvvm.data.model.auth
 
 data class AuthResponse(
     val message: String,

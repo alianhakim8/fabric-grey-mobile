@@ -1,4 +1,4 @@
-package id.alian.fabric_mobile_mvvm.data.model
+package id.alian.fabric_mobile_mvvm.data.model.fabric
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -12,5 +12,5 @@ data class FabricResponse(
     @SerializedName("brand")
     val fabricBrand: String,
     @SerializedName("po_number")
-    val poNumber: Int
+    val poNumber: Int,
 ) : Serializable

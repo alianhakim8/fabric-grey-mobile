@@ -2,7 +2,7 @@ package id.alian.fabric_mobile_mvvm.ui.main.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
 import id.alian.fabric_mobile_mvvm.data.repository.MainRepository
 import id.alian.fabric_mobile_mvvm.utils.Resource
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +42,15 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = mainRepository.getLastFabric(token)))
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error Occurred"))
+        }
+    }
+
+    fun getFabricDetail(token: String, id: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = mainRepository.getFabricDetail(token, id)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred"))
         }

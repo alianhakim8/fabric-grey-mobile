@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
-import id.alian.fabric_mobile_mvvm.data.model.FabricResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
 import id.alian.fabric_mobile_mvvm.databinding.ActivityAddFabricBinding
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.MainViewModel
 import id.alian.fabric_mobile_mvvm.ui.main.viewmodel.ViewModelFactory
