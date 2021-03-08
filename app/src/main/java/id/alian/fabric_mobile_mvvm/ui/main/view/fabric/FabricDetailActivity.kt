@@ -41,9 +41,9 @@ class FabricDetailActivity : AppCompatActivity() {
         binding.tvPoNumber.text = "\t: ${data.poNumber}"
 
         val id = data.id.toString()
-        getFabricDetail("token", id)
         setupViewModel()
         setupRecyclerView()
+        getFabricDetail("test", id)
 
         binding.tbFabricDetail.setNavigationOnClickListener {
             finish()
