@@ -17,6 +17,7 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden"
         tools:targetApi="m">
+        <activity android:name=".ui.main.view.fabric.AddFabricDetailActivity"></activity>
         <activity android:name=".ui.main.view.fabric.FabricDetailActivity" />
         <activity android:name=".ui.main.view.fabric.UpdateFabricActivity" />
         <activity android:name=".ui.main.view.fabric.AddFabricActivity" />

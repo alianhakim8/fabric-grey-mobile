@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'androidx.navigation.safeargs'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -12,7 +11,6 @@ android {
     defaultConfig {
         applicationId "id.alian.fabric_mobile_mvvm"
         minSdkVersion 23
-        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -35,7 +33,6 @@ android {
 
     buildFeatures {
         viewBinding true
-        dataBinding true
     }
 }
 
@@ -56,7 +53,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     // - - LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
-
 
     // navigation components
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
@@ -83,5 +79,7 @@ dependencies {
     // Lottie animation
     implementation 'com.airbnb.android:lottie:3.6.1'
 
-    kapt "com.android.databinding:compiler:4.1.2"
+    // shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
 }

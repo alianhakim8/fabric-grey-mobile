@@ -13,19 +13,22 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
-            android:layout_marginTop="@dimen/_30hsdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/custom_blue"
+            android:padding="@dimen/_20hsdp"
             app:menu="@menu/home_menu"
             app:subtitle="Good Morning"
-            app:title="Dashboard" />
+            app:subtitleTextColor="@color/black"
+            app:title="Dashboard"
+            app:titleTextColor="@color/white" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerBanner"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_30hsdp"
             android:layout_height="@dimen/_150hsdp"
             android:layout_marginStart="@dimen/_10hsdp"
+            android:layout_marginTop="@dimen/_30hsdp"
             android:layout_marginEnd="@dimen/_10hsdp" />
 
         <View

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,22 +69,23 @@ class FabricDetailActivity : AppCompatActivity() {
                 viewModel.getFabricDetail("Bearer $token", id).observe(this, { resource ->
                     when (resource.status) {
                         Status.SUCCESS -> {
-                            resource.data?.body().also {
-                                binding.recyclerView.visibility = View.VISIBLE
+                            resource.data?.body()?.data.let {
                                 if (it != null) {
+                                    binding.progressBar.visibility = View.GONE
                                     fabricAdapter.setData(it)
+                                    binding.recyclerView.visibility = View.VISIBLE
                                 } else {
-                                    binding.recyclerView.visibility = View.GONE
+                                    binding.progressBar.visibility = View.GONE
+                                    Toast.makeText(this, "Data Empty", Toast.LENGTH_SHORT).show()
                                 }
-                                Log.d("TAG", "setupObservers: $it")
                             }
                         }
                         Status.LOADING -> {
-                            binding.recyclerView.visibility = View.GONE
+                            binding.progressBar.visibility = View.VISIBLE
                         }
 
                         Status.ERROR -> {
-                            binding.recyclerView.visibility = View.GONE
+                            binding.progressBar.visibility = View.GONE
                             Log.d("TAG", "setupObservers: ${resource.message}")
                         }
                         else -> TODO()

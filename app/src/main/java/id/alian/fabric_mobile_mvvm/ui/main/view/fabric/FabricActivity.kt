@@ -1,14 +1,17 @@
 package id.alian.fabric_mobile_mvvm.ui.main.view.fabric
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.LinearInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import id.alian.fabric_mobile_mvvm.data.api.ApiHelper
 import id.alian.fabric_mobile_mvvm.data.api.RetrofitBuilder
 import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricResponse
@@ -83,6 +86,20 @@ class FabricActivity : AppCompatActivity(), OnItemClickListener {
     private fun setupRecyclerView() {
         binding.recyclerView.adapter = fabricAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    binding.fabAddFabric.animate().translationY(
+                        binding.fabAddFabric.height +
+                                resources.getDimension(R.dimen.app_icon_size)
+                    ).setInterpolator(LinearInterpolator()).duration = 200
+                } else if (dy < 0) {
+                    binding.fabAddFabric.animate().translationY(0f)
+                        .setInterpolator(LinearInterpolator()).duration = 200
+                }
+            }
+        })
     }
 
     private fun getFabrics(token: String) {

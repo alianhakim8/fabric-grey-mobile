@@ -40,7 +40,7 @@ interface ApiService {
     suspend fun getFabricDetail(
         @Header("Authorization") token: String,
         @Path("id") id: String
-    ): Response<List<FabricDetailResponse>>
+    ): Response<FabricDetailResponse>
 
     @POST("fabric/store")
     suspend fun addFabric(

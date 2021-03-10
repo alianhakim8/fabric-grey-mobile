@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricDetailResponse
+import id.alian.fabric_mobile_mvvm.data.model.fabric.FabricDetail
 import id.alian.fabric_mobile_mvvm.databinding.ItemDetailFabricBinding
 
-class FabricDetailAdapter() : RecyclerView.Adapter<FabricDetailAdapter.ViewHolder>() {
+class FabricDetailAdapter : RecyclerView.Adapter<FabricDetailAdapter.ViewHolder>() {
 
-    private var fabricDetailList = emptyList<FabricDetailResponse>()
+    private var fabricDetailList = emptyList<FabricDetail>()
 
     inner class ViewHolder(val binding: ItemDetailFabricBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -22,16 +22,16 @@ class FabricDetailAdapter() : RecyclerView.Adapter<FabricDetailAdapter.ViewHolde
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.tvFabricQty.text = "\t: ${fabricDetailList[position].data.quantity}"
-        holder.binding.tvFabricDirty.text = "\t: ${fabricDetailList[position].data.oilDirty}"
-        holder.binding.tvFabricSlub.text = "\t: ${fabricDetailList[position].data.slub}"
+        holder.binding.tvFabricQty.text = "\t: ${fabricDetailList[position].quantity}"
+        holder.binding.tvFabricDirty.text = "\t: ${fabricDetailList[position].oilDirty}"
+        holder.binding.tvFabricSlub.text = "\t: ${fabricDetailList[position].slub}"
     }
 
     override fun getItemCount(): Int {
         return fabricDetailList.size
     }
 
-    fun setData(newFabricList: List<FabricDetailResponse>) {
+    fun setData(newFabricList: List<FabricDetail>) {
         fabricDetailList = newFabricList
         notifyDataSetChanged()
     }
