@@ -40,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val token = activity?.intent?.getStringExtra(Global.TOKEN)
         Log.d("TAG", "onViewCreated: $token")
         getLastFabric(token!!)
-        binding.fabric.setOnClickListener {
+        binding.include.cvFabric.setOnClickListener {
             Intent(requireContext(), FabricActivity::class.java).also {
                 it.putExtra(Global.TOKEN, token)
                 Log.d("TAG", "onViewCreated: $token")
@@ -69,29 +69,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getLastFabric(token).observe(this, { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.ponumber.visibility = View.VISIBLE
-                        binding.fabricType.visibility = View.VISIBLE
-                        binding.tvMachine.visibility = View.VISIBLE
-                        binding.ponumber.text = resource.data?.body()?.data?.poNumber.toString()
-                        binding.fabricType.text =
+                        binding.include.progressBar.visibility = View.GONE
+                        binding.include.ponumber.visibility = View.VISIBLE
+                        binding.include.fabricType.visibility = View.VISIBLE
+                        binding.include.tvMachine.visibility = View.VISIBLE
+                        binding.include.ponumber.text =
+                            resource.data?.body()?.data?.poNumber.toString()
+                        binding.include.fabricType.text =
                             "Fabric Type\t: ${resource.data?.body()?.data?.fabricType.toString()}"
-                        binding.tvMachine.text =
+                        binding.include.tvMachine.text =
                             "Machine\t: ${resource.data?.body()?.data?.machineID.toString()}"
                     }
 
                     Status.LOADING -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                        binding.ponumber.visibility = View.GONE
-                        binding.fabricType.visibility = View.GONE
-                        binding.tvMachine.visibility = View.GONE
+                        binding.include.progressBar.visibility = View.VISIBLE
+                        binding.include.ponumber.visibility = View.GONE
+                        binding.include.fabricType.visibility = View.GONE
+                        binding.include.tvMachine.visibility = View.GONE
                     }
 
                     Status.ERROR -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.fabricType.visibility = View.VISIBLE
-                        binding.tvMachine.visibility = View.VISIBLE
-                        binding.ponumber.text = "Error to get last fabric"
+                        binding.include.progressBar.visibility = View.GONE
+                        binding.include.fabricType.visibility = View.VISIBLE
+                        binding.include.tvMachine.visibility = View.VISIBLE
+                        binding.include.ponumber.text = "Error to get last fabric"
                     }
                     else -> TODO()
                 }
@@ -133,7 +134,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 "Good Morning,"
             }
         }
-        binding.topAppBar.subtitle = "$greeting User"
+        binding.tb.subtitle = "$greeting User"
     }
 
 }

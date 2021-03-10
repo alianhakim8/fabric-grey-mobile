@@ -3,7 +3,7 @@
     <style name="Theme.Fabricmobilemvvm" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/custom_blue</item>
-        <item name="colorPrimaryVariant">@color/custom_blue</item>
+        <item name="colorPrimaryVariant">@color/custom_dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,6 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">@color/custom_blue</item>
+        <item name="android:navigationBarColor">@color/custom_dark_blue</item>
     </style>
 </resources>

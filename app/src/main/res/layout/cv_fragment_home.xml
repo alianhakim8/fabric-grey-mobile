@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_fabric"
+        android:layout_width="@dimen/_100hsdp"
+        android:layout_height="@dimen/_100hsdp"
+        android:layout_margin="@dimen/_5hsdp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/fabric" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_machine"
+        android:layout_width="@dimen/_100hsdp"
+        android:layout_height="@dimen/_100hsdp"
+        android:layout_margin="@dimen/_5hsdp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@+id/cv_report"
+        app:layout_constraintStart_toEndOf="@+id/cv_fabric"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/machine" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_report"
+        android:layout_width="@dimen/_100hsdp"
+        android:layout_height="@dimen/_100hsdp"
+        android:layout_margin="@dimen/_5hsdp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_machine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/report" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_1hsdp"
+        android:layout_marginTop="32dp"
+        android:background="#D6D6D6"
+        app:layout_constraintEnd_toEndOf="@+id/cv_report"
+        app:layout_constraintStart_toStartOf="@+id/cv_fabric"
+        app:layout_constraintTop_toBottomOf="@id/cv_machine" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/latest_po_number"
+        android:textColor="#303030"
+        android:textSize="@dimen/_15font_ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_100hsdp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/po_number_style"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@id/textView8">
+
+        <TextView
+            android:id="@+id/ponumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16hsdp"
+            android:text="2020/2/121547898987"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/fabric_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fabric Type : Franch Terry"
+            android:textSize="@dimen/_10font_ssp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/ponumber"
+            app:layout_constraintTop_toBottomOf="@+id/ponumber" />
+
+        <TextView
+            android:id="@+id/tv_machine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Machine : Machine 001"
+            android:textSize="@dimen/_10font_ssp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/fabric_type"
+            app:layout_constraintTop_toBottomOf="@+id/fabric_type" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_50hsdp"
+            android:layout_height="@dimen/_50hsdp"
+            android:layout_marginEnd="@dimen/_16hsdp"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,25 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     tools:context=".ui.main.view.DashboardActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/tb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/custom_blue"
-            android:padding="@dimen/_20hsdp"
-            app:menu="@menu/home_menu"
-            app:subtitle="Good Morning"
-            app:subtitleTextColor="@color/black"
+            android:padding="@dimen/_10hsdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:subtitle="@string/todo"
+            app:subtitleTextColor="@color/custom_light_gray"
             app:title="Dashboard"
             app:titleTextColor="@color/white" />
 
@@ -27,176 +29,18 @@
             android:id="@+id/viewPagerBanner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150hsdp"
-            android:layout_marginStart="@dimen/_10hsdp"
-            android:layout_marginTop="@dimen/_30hsdp"
-            android:layout_marginEnd="@dimen/_10hsdp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb" />
 
-        <View
+        <include
+            android:id="@+id/include"
+            layout="@layout/cv_fragment_home"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1hsdp"
-            android:layout_marginLeft="@dimen/_10hsdp"
-            android:layout_marginTop="@dimen/_50hsdp"
-            android:layout_marginRight="@dimen/_10hsdp"
-            android:background="#D6D6D6" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10hsdp"
-            android:layout_marginTop="@dimen/_50hsdp"
-            android:layout_marginBottom="@dimen/_20hsdp"
-            android:text="@string/menu"
-            android:textColor="#303030"
-            android:textSize="@dimen/_15font_ssp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_5hsdp"
-            android:layout_marginEnd="@dimen/_5hsdp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/fabric"
-                android:layout_width="@dimen/_120hsdp"
-                android:layout_height="@dimen/_150hsdp"
-                android:backgroundTint="@color/custom_navy"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="@dimen/_20hsdp"
-                app:cardElevation="@dimen/_5hsdp"
-                app:rippleColor="@color/custom_blue">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/im_fabric"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="@dimen/_10hsdp"
-                        android:layout_marginTop="@dimen/_10hsdp"
-                        android:layout_marginBottom="@dimen/_10hsdp"
-                        android:gravity="bottom"
-                        android:text="@string/fabric"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_20font_ssp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/machine"
-                android:layout_width="@dimen/_120hsdp"
-                android:layout_height="@dimen/_150hsdp"
-                android:layout_marginStart="@dimen/_5hsdp"
-                android:layout_marginEnd="@dimen/_5hsdp"
-                android:backgroundTint="@color/custom_navy"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="@dimen/_20hsdp"
-                app:cardElevation="@dimen/_5hsdp"
-                app:rippleColor="@color/custom_navy">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/im_machine"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="@dimen/_10hsdp"
-                        android:layout_marginTop="@dimen/_10hsdp"
-                        android:layout_marginBottom="@dimen/_10hsdp"
-                        android:gravity="bottom"
-                        android:text="@string/machine"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_20font_ssp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10hsdp"
-            android:layout_marginTop="@dimen/_50hsdp"
-            android:layout_marginBottom="@dimen/_20hsdp"
-            android:text="@string/latest_po_number"
-            android:textColor="#303030"
-            android:textSize="@dimen/_15font_ssp"
-            android:textStyle="bold" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100hsdp"
-            android:layout_margin="@dimen/_10hsdp"
-            android:background="@drawable/po_number_style">
-
-            <TextView
-                android:id="@+id/ponumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16hsdp"
-                android:text="2020/2/121547898987"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/fabric_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Fabric Type : Franch Terry"
-                android:textSize="@dimen/_10font_ssp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/ponumber"
-                app:layout_constraintTop_toBottomOf="@+id/ponumber" />
-
-            <TextView
-                android:id="@+id/tv_machine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Machine : Machine 001"
-                android:textSize="@dimen/_10font_ssp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/fabric_type"
-                app:layout_constraintTop_toBottomOf="@+id/fabric_type" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@dimen/_50hsdp"
-                android:layout_height="@dimen/_50hsdp"
-                android:layout_marginEnd="@dimen/_16hsdp"
-                android:contentDescription="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPagerBanner" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
